@@ -1,8 +1,5 @@
 import { createStore } from 'vuex'
 import ProductRepository from '../repositories/ProductRepository';
-import Repository from "../repositories/RepositoryFactory"
-
-const productRepository = Repository.get("products")
 
 export default createStore({
     state () {
