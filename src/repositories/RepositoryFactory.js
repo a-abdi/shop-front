@@ -1,8 +1,8 @@
-import PostRepository from './PostRepository';
+import ProductRepository from './ProductRepository';
 // import UserRepository from './UserRepository';
 
 const repositories = {
-    'posts': PostRepository,
+    'products': ProductRepository,
     // 'users': UserRepository
 }
 export default {

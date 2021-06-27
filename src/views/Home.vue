@@ -1,15 +1,38 @@
 <template>
-    <div class="text-center text-gray-600 bg-gray-300 mt-24">
-        <h1>Home page {{ user }}</h1>
+    <div>
+        <div v-if="products" class="grid responsive">
+            <introduction-card v-for="product in products.data" :key="product.id" :product="product"/>
+        </div>
+        <loading v-else> loading </loading>
     </div>
 </template>
 
 <script>
+    import { computed } from '@vue/runtime-core'
+    import { useStore } from 'vuex'
+    import IntroductionCard from '../components/IntroductionCard.vue'
+    import Loading from '../components/Loading.vue'
+
     export default {
-        computed: {
-            user () {
-                return this.$store.state.user
+        components: {
+            IntroductionCard,
+            Loading
+        },
+
+        setup () {
+            const store = useStore()
+            
+            store.dispatch('getProducts')
+
+            return {
+                products: computed ( () => store.state.products ),
             }
-        } 
+        }
     }
 </script>
+
+<style>
+    .responsive {
+        @apply grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6;
+    }
+</style>

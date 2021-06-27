@@ -1,25 +1,32 @@
 import { createStore } from 'vuex'
+import ProductRepository from '../repositories/ProductRepository';
+import Repository from "../repositories/RepositoryFactory"
+
+const productRepository = Repository.get("products")
 
 export default createStore({
     state () {
-        return {
-          user: 'null',
-        }
+      return {
+        products: null
+      }
     },
 
     mutations: {
-        setUserData (state) {
-          state.user = 'test';
-        }
+      loadProducts (state, response) {
+
+        const { data } = response
+
+        state.products = data
+      }
     },
 
     getters: {
-        isLoged (state) {
-          return state.user;
-        }
+       
     },
 
     actions: {
-      auth ({ commit }) { commit('setUserData') }
+      async getProducts ({ commit }) {
+        commit('loadProducts', await ProductRepository.index())
+      }
     }
 })
