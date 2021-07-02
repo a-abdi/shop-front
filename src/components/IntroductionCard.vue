@@ -1,10 +1,10 @@
 <template>
     <div class="my-4 max-w-xs sm:mx-2 mx-auto">
         <div>
-            <img :src="product.image_src" alt="product" class="cursor-pointer h-48 w-full">
+            <img :src="product.image_src" alt="product" class="h-48 w-full">
         </div>
 
-        <div class="tracking-wide font-medium cursor-pointer px-2 py-2">
+        <div class="tracking-wide font-medium px-2 py-2">
             {{ product.name }}
         </div>
 

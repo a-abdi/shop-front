@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="products" class="grid responsive">
-            <introduction-card v-for="product in products.data" :key="product.id" :product="product"/>
+            <introduction-card v-for="product in products.data" :key="product.id" @click="showProduct(product.id)" :product="product" class="cursor-pointer"/>
         </div>
         <loading v-else> loading </loading>
     </div>
@@ -24,7 +24,10 @@
             
             store.dispatch('getProducts')
 
+            const showProduct = productId => store.dispatch( 'getProduct', { productId })
+            
             return {
+                showProduct,
                 products: computed ( () => store.state.products ),
             }
         }
