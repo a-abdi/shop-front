@@ -15,17 +15,18 @@
         </div>
 
         <div class="py-2">
-            ${{ formatPrice ( product.price ) }}
-        </div>
-
-        <div class="h-6">
-            
+            <TotalPrice :price="product.price" :discount="product.discount" />
         </div>
     </div>
 </template>
 
 <script>
+    import TotalPrice from '../components/TotalPrice.vue'
+
     export default {
+        components:{
+            TotalPrice
+        },
         props: {
             product: Object
         },

@@ -3,13 +3,14 @@
         <div v-if="products" class="grid responsive">
             <introduction-card v-for="product in products.data" :key="product.id" @click="showProduct(product.id)" :product="product" class="cursor-pointer"/>
         </div>
-        <loading v-else> loading </loading>
+        <loading v-else />
     </div>
 </template>
 
 <script>
     import { computed } from '@vue/runtime-core'
     import { useStore } from 'vuex'
+    import { useRouter } from 'vue-router'
     import IntroductionCard from '../components/IntroductionCard.vue'
     import Loading from '../components/Loading.vue'
 
@@ -21,10 +22,11 @@
 
         setup () {
             const store = useStore()
-            
+            const router = useRouter()
+
             store.dispatch('getProducts')
 
-            const showProduct = productId => store.dispatch( 'getProduct', { productId })
+            const showProduct = productId => router.push(`/products/${productId}`)
             
             return {
                 showProduct,

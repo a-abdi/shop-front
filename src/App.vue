@@ -1,6 +1,6 @@
 <template>
   <app-layout>  
-    <router-view class="bg-white md:my-4 my-2 md:mx-2 mx-0.5"/>
+    <router-view class="bg-white md:my-4 my-2"/>
   </app-layout> 
 </template>
 

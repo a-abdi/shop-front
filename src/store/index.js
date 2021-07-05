@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import ProductRepository from '../repositories/ProductRepository';
+import ProductRepository from '../repositories/ProductRepository'
 
 const productRepository = ProductRepository
 
@@ -33,7 +33,7 @@ export default createStore({
       },
 
       async getProduct({ commit }, { productId }) {
-        commit('loadProduct', await productRepository.show(productId)) 
+        commit('loadProduct', await productRepository.show(productId))
       }
     }
 })
