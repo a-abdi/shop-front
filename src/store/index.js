@@ -7,7 +7,8 @@ export default createStore({
     state () {
       return {
         products: null,
-        product: null
+        product: null,
+        cart: null,
       }
     },
 

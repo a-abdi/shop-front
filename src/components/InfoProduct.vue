@@ -13,11 +13,27 @@
                     <TotalPrice :price="product.price" :discount="product.discount" class="border p-2 rounded-md" />
                 </div>
 
-                <div class="px-2 mx-2 my-8 flex">
-                    <label for="quantity" class="text-gray-600 pr-4">quantity:</label>
-                    <p id="quantity" class="text-red-600">
-                        {{ product.quantity }}
-                    </p>
+                <div class="px-2 mx-2 my-1 md:my-8 flex justify-between">
+                    <div class="flex">
+                        <label for="quantity" class="text-gray-600 pr-4">
+                            quantity:
+                        </label>
+
+                        <p id="quantity" class="text-red-600">
+                            {{ product.quantity }}
+                        </p>
+                    </div>
+
+                     <div class="sm:hidden">
+                        <button class="p-1 mx-2 rounded-lg text-white bg-red-500 hover:bg-red-600 focus:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50">
+                            Add To Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden sm:flex flex-row-reverse">
+                    <button class="p-2 mr-2 rounded-lg text-white bg-red-500 hover:bg-red-600 focus:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50">
+                        Add To Cart
+                    </button>
                 </div>
             </div>
         </div>
