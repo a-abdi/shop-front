@@ -1,19 +1,19 @@
 <template>
     <div>
         <header/>
-        <AppLayoutLinks/>
+        <AppLayoutLinksGuest/>
         <slot/>
     </div>
 </template>
 
 <script>
-import AppLayoutLinks from './AppLayoutLinks.vue'
+import AppLayoutLinksGuest from './AppLayoutLinksGuest.vue'
 
 export default {
-    name: "AppLayoutHome",
+    name: "AppLayoutGuest",
 
     components: {
-        AppLayoutLinks
+        AppLayoutLinksGuest
     },
 
     setup () {
