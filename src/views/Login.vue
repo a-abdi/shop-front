@@ -7,14 +7,17 @@
                 </div>
                 <div class="p-2 text-gray-600">
                     <label for="email" class="">email</label>
-                    <input name="email" id="email" type="email" class="input">
+                    <input v-model="form.email" name="email" id="email" type="email" class="input">
                 </div>
                 <div class="p-2 text-gray-600">
                     <label for="password" class="">password</label>
-                    <input name="password" id="password" type="password" class="input">
+                    <input v-model="form.password" name="password" id="password" type="password" class="input">
                 </div>
                 <div class="p-2">
                     <button type="submit" class="inline-flex px-3 py-1 text-gray-800 tracking-wide bg-blue-200 rounded-md focus:outline-none hover:bg-blue-300 focus:bg-blue-400 focus:ring-2 focus:ring-blue-500">Login</button>
+                </div>
+                <div v-if="error" class="text-center py-1 px-2 rounded-md text-white bg-red-600">
+                    {{ error.message }}
                 </div>
             </form>
         </div>
@@ -22,15 +25,40 @@
 </template>
 
 <script>
+import { ref, reactive } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+
 export default {
     setup () {
+        const store = useStore()
+        const error = ref(null)
+        const router = useRouter()
+        const form = reactive({
+            email: null,
+            password: null,
+            loading: false,
+        })
 
-        const login = () => {
-            
+        const login = async() => {
+            form.loading = true
+            error.value = null
+            try {
+                await store.dispatch('userLogin', form)
+                router.push({
+                    name: 'Home'
+                })
+                
+            } catch (e) {
+                form.loading = false
+                error.value = e.response.data
+            }
         }
 
         return {
-            login
+            login,
+            form,
+            error,
         }
     }
 }

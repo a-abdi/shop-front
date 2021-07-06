@@ -1,6 +1,8 @@
 import { createStore } from 'vuex'
 import ProductRepository from '../repositories/ProductRepository'
 import AuthRepository from '../repositories/AuthRepository'
+import CartRepository from '../repositories/CartRepository'
+import { axiosSetToken } from '../repositories/Clients/AxiosClient'
 
 const productRepository = ProductRepository
 const authRepository = AuthRepository
@@ -29,7 +31,8 @@ export default createStore({
       setUserData (state, userData) {
         state.user = userData
         localStorage.setItem('user', JSON.stringify( userData))
-
+        const { data } = userData
+        axiosSetToken(data)
       }
     },
 
@@ -46,8 +49,17 @@ export default createStore({
         commit('loadProduct', await productRepository.show(productId))
       },
 
-      async userRegister (userData ) {
-        return await authRepository.registerUser(userData) 
+      async userRegister ({}, userData) {
+        return await authRepository.userRegister(userData) 
+      },
+
+      async userLogin ({commit}, userData) {
+        commit('setUserData', await authRepository.userLogin(userData))
+      },
+      
+      async getCart () {
+        console.log(await CartRepository.index())
       }
+
     }
 })

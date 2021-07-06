@@ -19,7 +19,7 @@
                 </div>
                 <div class="p-2 text-gray-600">
                     <label for="password_confirmation" class="">confirm</label>
-                    <input  v-model="form.password_confirmation" name="password_confirmation" id="password_confirmation" type="password" class="input" required>
+                    <input v-model="form.password_confirmation" name="password_confirmation" id="password_confirmation" type="password" class="input" required>
                 </div>
                 <div class="p-2">
                     <button :disabled="form.loading" :class="{'cursor-wait': form.loading}" class="inline-flex px-3 py-1 text-gray-800 tracking-wide bg-blue-200 rounded-md focus:outline-none hover:bg-blue-300 focus:bg-blue-400 focus:ring-2 focus:ring-blue-500">Register</button>
