@@ -1,9 +1,9 @@
 <template>
     <div>
         <div v-if="products" class="grid responsive">
-            <introduction-card v-for="product in products.data" :key="product.id" @click="showProduct(product.id)" :product="product" class="cursor-pointer"/>
+            <IntroductionCard v-for="product in products.data" :key="product.id" @click="showProduct(product.id)" :product="product" class="cursor-pointer"/>
         </div>
-        <loading v-else />
+        <Loading v-else />
     </div>
 </template>
 

@@ -78,6 +78,10 @@
                 })
             }
 
+            const addToCart = () => {
+                
+            }
+
             return {
                 product: computed ( () => store.state.product.data ),
             }

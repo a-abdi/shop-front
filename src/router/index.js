@@ -12,7 +12,7 @@ const routes = [
     name: "Home",
     component: Home,
     meta: {
-      layout: "AppLayoutHome"
+      layout: "AppLayoutUser"
     }
   },
 
@@ -21,7 +21,7 @@ const routes = [
     name: "About",
     component: About,
     meta: {
-      layout: "AppLayoutAbout"
+      layout: "AppLayoutUser"
     }
   },
 
@@ -30,7 +30,7 @@ const routes = [
     name: "Product",
     component: Product,
     meta: {
-      layout: "AppLayoutHome"
+      layout: "AppLayoutUser"
     }
   },
 
@@ -39,7 +39,7 @@ const routes = [
     name: "Register",
     component: Register,
     meta: {
-      layout: "AppLayoutGuest"
+      layout: "AppLayoutUser"
     }
   },
 
@@ -48,7 +48,7 @@ const routes = [
     name: "Login",
     component: Login,
     meta: {
-      layout: "AppLayoutGuest"
+      layout: "AppLayoutUser"
     }
   },
 
@@ -57,7 +57,7 @@ const routes = [
     name: 'NotFound', 
     component: NotFound,
     meta: {
-      layout: "AppLayoutGuest"
+      layout: "AppLayoutUser"
     }
   },
 ];
