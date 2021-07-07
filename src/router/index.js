@@ -6,6 +6,7 @@ import NotFound from "../views/NotFound.vue";
 import Register from "../views/Register.vue"
 import Login from "../views/Login.vue"
 import checkAuth from "../middlewares/beforeEachAuth"
+import checkGuest from "../middlewares/beforeEnterGuest"
 
 const routes = [
   {
@@ -46,7 +47,7 @@ const routes = [
       layout: "AppLayoutUser",
       requiresAuth: false,
     },
-
+    beforeEnter: (to, from, next) => checkGuest(next)
   },
 
   {
@@ -56,7 +57,8 @@ const routes = [
     meta: {
       layout: "AppLayoutUser",
       requiresAuth: false,     
-    }
+    },
+    beforeEnter: (to, from, next) => checkGuest(next)
   },
 
   {
