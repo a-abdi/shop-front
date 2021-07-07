@@ -1,7 +1,7 @@
 <template>
     <div>
         <header/>
-        <AppLayoutLinks v-if="user" />
+        <AppLayoutLinks v-if="!userIsGuest" />
         <AppLayoutLinksGuest v-else />
         <slot/>
     </div>
@@ -9,6 +9,7 @@
 
 <script>
 import { computed } from 'vue'
+import { useStore } from 'vuex'
 import AppLayoutLinks from './AppLayoutLinks.vue'
 import AppLayoutLinksGuest from './AppLayoutLinksGuest.vue'
 
@@ -21,9 +22,9 @@ export default {
     },
 
     setup () {
-        
+        const store = useStore()
         return {
-            user: computed( () => localStorage.getItem('user'))
+            userIsGuest: computed( () => store.getters.userIsGuest)
         }
     }
 }

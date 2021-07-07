@@ -6,6 +6,7 @@
 
 <script>
   import AppLayout from './layouts/AppLayout.vue'
+  import { useStore } from 'vuex'
 
   export default {
     name: 'App',
@@ -15,7 +16,14 @@
     },
     
     setup () {
-    
+      const userInfo = localStorage.getItem('user')
+      const store = useStore()
+
+      if (userInfo) {
+        const userData = JSON.parse(userInfo)
+        store.commit('setUserData', userData)
+      }
+      
       return {
 
       }

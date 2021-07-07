@@ -34,7 +34,13 @@ export default createStore({
     },
 
     getters: {
-       
+       userIsGuest(state) {
+          if(!state.user) {
+            return true
+          } else {
+            return false
+          }
+       }
     },
 
     actions: {
