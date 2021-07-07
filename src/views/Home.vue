@@ -23,11 +23,12 @@
         setup () {
             const store = useStore()
             const router = useRouter()
+            // delete axios.defaults.headers.common["Authorization"]
 
             store.dispatch('getProducts')
 
             const showProduct = productId => router.push(`/products/${productId}`)
-            
+
             return {
                 showProduct,
                 products: computed ( () => store.state.products ),

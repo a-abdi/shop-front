@@ -4,9 +4,6 @@ import AuthRepository from '../repositories/AuthRepository'
 import CartRepository from '../repositories/CartRepository'
 import { axiosSetToken } from '../repositories/Clients/AxiosClient'
 
-const productRepository = ProductRepository
-const authRepository = AuthRepository
-
 export default createStore({
     state () {
       return {
@@ -32,7 +29,7 @@ export default createStore({
         state.user = userData
         localStorage.setItem('user', JSON.stringify( userData))
         const { data } = userData
-        axiosSetToken(data)
+        axiosSetToken(data.data)
       }
     },
 
@@ -42,24 +39,24 @@ export default createStore({
 
     actions: {
       async getProducts ({ commit }) {
-        commit('loadProducts', await productRepository.index())
+        commit('loadProducts', await ProductRepository.index())
       },
 
       async getProduct ({ commit }, { productId }) {
-        commit('loadProduct', await productRepository.show(productId))
+        commit('loadProduct', await ProductRepository.show(productId))
       },
 
       async userRegister ({}, userData) {
-        return await authRepository.userRegister(userData) 
+        return await AuthRepository.userRegister(userData) 
       },
 
       async userLogin ({commit}, userData) {
-        commit('setUserData', await authRepository.userLogin(userData))
+        commit('setUserData', await AuthRepository.userLogin(userData))
       },
       
-      async getCart () {
-        console.log(await CartRepository.index())
-      }
+      // async getCart () {
+      //   console.log(await CartRepository.index())
+      // }
 
     }
 })

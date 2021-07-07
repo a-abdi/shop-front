@@ -14,7 +14,7 @@
                     <input v-model="form.password" name="password" id="password" type="password" class="input">
                 </div>
                 <div class="p-2">
-                    <button type="submit" class="inline-flex px-3 py-1 text-gray-800 tracking-wide bg-blue-200 rounded-md focus:outline-none hover:bg-blue-300 focus:bg-blue-400 focus:ring-2 focus:ring-blue-500">Login</button>
+                    <button :disabled="form.loading" :class="{'cursor-wait': form.loading}" type="submit" class="inline-flex px-3 py-1 text-gray-800 tracking-wide bg-blue-200 rounded-md focus:outline-none hover:bg-blue-300 focus:bg-blue-400 focus:ring-2 focus:ring-blue-500">Login</button>
                 </div>
                 <div v-if="error" class="text-center py-1 px-2 rounded-md text-white bg-red-600">
                     {{ error.message }}
