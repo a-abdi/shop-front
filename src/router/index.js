@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
+import Cart from "../views/Cart.vue";
 import Product from "../views/Product.vue";
 import NotFound from "../views/NotFound.vue";
 import Register from "../views/Register.vue"
@@ -36,6 +37,16 @@ const routes = [
     meta: {
       layout: "AppLayoutUser",
       requiresAuth: false,
+    }
+  },
+
+  {
+    path: "/cart",
+    name: "Cart",
+    component: Cart,
+    meta: {
+      layout: "AppLayoutUser",
+      requiresAuth: true,
     }
   },
 

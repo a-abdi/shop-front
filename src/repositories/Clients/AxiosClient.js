@@ -4,15 +4,17 @@ const baseDomain = "http://192.168.1.131:8094"
 
 const baseURL = `${baseDomain}/api`
 
-let token = null
+const userData = localStorage.getItem('user')
+const token = {}
 
-export const axiosSetToken = (token) => {
-    token = token.data
+if(userData) {
+    const { data } = JSON.parse(userData)
+    token.value = data.token
 }
 
 export default axios.create({
     baseURL,
     headers: {
-        "Authorization": `Bearer ${token}`
+        "Authorization": `Bearer ${token.value}`
     }
 });

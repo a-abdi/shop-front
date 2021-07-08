@@ -25,13 +25,13 @@
                     </div>
 
                      <div class="sm:hidden">
-                        <button class="p-1 mx-2 rounded-lg text-white bg-red-500 hover:bg-red-600 focus:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50">
+                        <button @click="addToCart" class="p-1 mx-2 rounded-lg text-white bg-red-500 hover:bg-red-600 focus:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50">
                             Add To Cart
                         </button>
                     </div>
                 </div>
                 <div class="hidden sm:flex flex-row-reverse">
-                    <button class="p-2 mr-2 rounded-lg text-white bg-red-500 hover:bg-red-600 focus:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50">
+                    <button @click="addToCart" class="p-2 mr-2 rounded-lg text-white bg-red-500 hover:bg-red-600 focus:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50">
                         Add To Cart
                     </button>
                 </div>
@@ -78,12 +78,18 @@
                 })
             }
 
-            const addToCart = () => {
-                
+            const addToCart = async () => {
+                try {
+                    await store.dispatch('addToCart', { productId })
+
+                } catch (e) {
+                    console.log(e)
+                }
             }
 
             return {
                 product: computed ( () => store.state.product.data ),
+                addToCart
             }
         }
     }
