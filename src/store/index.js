@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import ProductRepository from '../repositories/ProductRepository'
 import AuthRepository from '../repositories/AuthRepository'
 import CartRepository from '../repositories/CartRepository'
+import Client from '../repositories/Clients/AxiosClient'
 
 export default createStore({
     state () {
@@ -27,6 +28,7 @@ export default createStore({
       setUserData (state, userData) {
         state.user = userData
         localStorage.setItem('user', JSON.stringify( userData))
+        Client.defaults.headers.common['Authorization'] = `Bearer ${userData.data.token}`;
       },
 
       setCartData (state, cartData) {
