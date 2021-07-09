@@ -12,8 +12,6 @@
 </template>
  
 <script>
-    import { useRoute } from 'vue-router'
-    import { useStore } from 'vuex'
     import InfoProduct from '../components/InfoProduct.vue'
     import Loading from '../components/Loading.vue'
 
@@ -24,9 +22,6 @@
         },
 
         setup () {
-            const store = useStore()
-            const route = useRoute()
-            const productId = route.params.productId
             
             return {
 

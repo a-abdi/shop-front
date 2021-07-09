@@ -1,7 +1,7 @@
 <template>
-  <app-layout>  
+  <AppLayout>  
     <router-view class="bg-white md:my-4 my-2"/>
-  </app-layout> 
+  </AppLayout> 
 </template>
 
 <script>
@@ -16,12 +16,16 @@
     },
     
     setup () {
-      const userInfo = localStorage.getItem('user')
+      const userData = localStorage.getItem('user')
+      const cartData = localStorage.getItem('cart')
       const store = useStore()
 
-      if (userInfo) {
-        const userData = JSON.parse(userInfo)
-        store.commit('setUserData', userData)
+      if (userData) {
+        store.commit('setUserData', JSON.parse(userData))
+      }
+
+      if (cartData) {
+        store.commit('setCartData', JSON.parse(cartData))
       }
       
       return {

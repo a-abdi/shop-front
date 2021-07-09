@@ -29,20 +29,30 @@ export default createStore({
         localStorage.setItem('user', JSON.stringify( userData))
       },
 
-      loadCart (state, response) {
-        const { data } = response
-        state.cart = data
+      setCartData (state, cartData) {
+        state.cart = cartData
+        localStorage.setItem('cart', JSON.stringify( cartData ))
       }
     },
 
     getters: {
-       userIsGuest(state) {
-          if(!state.user) {
-            return true
-          } else {
-            return false
-          }
-       }
+      userIsGuest(state) {
+        if(!state.user) {
+          return true
+
+        } else {
+          return false
+        }
+      },
+
+      countCart(state) {
+        if(state.cart) {
+          return state.cart.data.length
+
+        } else {
+          return null
+        }
+      },
     },
 
     actions: {
@@ -63,12 +73,14 @@ export default createStore({
         commit('setUserData', user.data)
       },
       
-      // async getCart () {
-      //   console.log(await CartRepository.index())
-      // },
+      async getCart ({ commit }) {
+        const cart = await CartRepository.index()
+        commit('setCartData', cart.data)
+      },
 
       async addToCart ({ commit }, productId) {
-        commit('loadCart', await CartRepository.create(productId))
+        const cart = await CartRepository.create(productId)
+        commit('setCartData', cart.data)
       }
 
     }
