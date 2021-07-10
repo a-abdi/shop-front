@@ -6,8 +6,7 @@
                     <p class="line-through text-gray-400">
                         ${{ formatPrice(price) }}
                     </p>
-                </div>
-
+                </div> 
                 <div class="bg-red-500 inline-flex rounded-lg p-0.5">
                     <p class="text-white">
                         {{ percentage }}
