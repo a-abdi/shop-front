@@ -31,10 +31,19 @@ export default createStore({
         Client.defaults.headers.common['Authorization'] = `Bearer ${userData.data.token}`;
       },
 
+      clearUserData () {
+        localStorage.removeItem('user');
+        location.reload();
+      },
+
       setCartData (state, cartData) {
         state.cart = cartData
         localStorage.setItem('cart', JSON.stringify( cartData ))
-      }
+      },
+
+      clearCartData () {
+        localStorage.removeItem('cart');
+      },
     },
 
     getters: {
@@ -83,7 +92,11 @@ export default createStore({
       async addToCart ({ commit }, productId) {
         const cart = await CartRepository.create(productId)
         commit('setCartData', cart.data)
-      }
+      },
 
+      signOut({ commit }) {
+        commit('clearCartData')
+        commit('clearUserData')
+      }
     }
 })

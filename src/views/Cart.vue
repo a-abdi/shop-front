@@ -1,5 +1,5 @@
 <template>
-    <div class="flex">
+    <div class="flex w-sm sm:w-full overflow-x-auto">
         <div class="w-3/4">
             <div v-for="product in cart.data" :key="product.id" class="flex p-.5 sm:p-1 md:p-2 text-xs md:text-sm">
                 <div class="w-1/3">

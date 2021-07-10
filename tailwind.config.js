@@ -5,7 +5,13 @@ module.exports = {
     extend: {
       backgroundImage: theme => ({
         'cart': "url('/src/assets/cart.svg')",
-       })
+      }),
+      spacing: {
+        'sm': '640px',
+      },
+      minWidth: {
+        'sm': '640px',
+      }
     },
   },
   variants: {
