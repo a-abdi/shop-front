@@ -24,8 +24,8 @@
 <script>
 import { computed } from 'vue'
 import { useStore } from 'vuex'
-import TotalPrice from '../components/TotalPrice.vue'
-import Checkout from '../components/Checkout.vue'
+import TotalPrice from '../../components/TotalPrice.vue'
+import Checkout from '../../components/Checkout.vue'
 
 export default {
     components: {

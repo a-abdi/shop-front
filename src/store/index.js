@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
 import ProductRepository from '../repositories/ProductRepository'
-import AuthRepository from '../repositories/AuthRepository'
-import CartRepository from '../repositories/CartRepository'
+import AuthRepository from '../repositories/User/AuthRepository'
+import CartRepository from '../repositories/User/CartRepository'
 import Client from '../repositories/Clients/AxiosClient'
 
 export default createStore({
@@ -56,7 +56,7 @@ export default createStore({
         }
       },
 
-      countCart(state) {
+      cartCount(state) {
         if(state.cart) {
           return state.cart.data.length
 
@@ -94,7 +94,7 @@ export default createStore({
         commit('setCartData', cart.data)
       },
 
-      signOut({ commit }) {
+      userSignOut({ commit }) {
         commit('clearCartData')
         commit('clearUserData')
       }

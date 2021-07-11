@@ -53,8 +53,6 @@ export default {
             sumDiscount.value += cart.data[index].discount
         }
 
-        console.log(sumDiscount)
-
         return {
             sumPrice,
             sumDiscount,

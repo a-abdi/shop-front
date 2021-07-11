@@ -1,13 +1,13 @@
-import { createWebHistory, createRouter } from "vue-router";
-import Home from "../views/Home.vue";
-import About from "../views/About.vue";
-import Cart from "../views/Cart.vue";
-import Product from "../views/Product.vue";
-import NotFound from "../views/NotFound.vue";
-import Register from "../views/Register.vue"
-import Login from "../views/Login.vue"
+import { createWebHistory, createRouter } from "vue-router"
+import Home from "../views/Home.vue"
+import Cart from "../views/User/Cart.vue"
+import Product from "../views/Product.vue"
+import NotFound from "../views/NotFound.vue"
+import UserRegister from "../views/User/Register.vue"
+import UserLogin from "../views/User/Login.vue"
 import checkAuth from "../middlewares/beforeEachAuth"
 import checkGuest from "../middlewares/beforeEnterGuest"
+import AdminLogin from "../views/Admin/Login.vue"
 
 const routes = [
   {
@@ -17,16 +17,6 @@ const routes = [
     meta: {
       layout: "AppLayoutUser",
       requiresAuth: false,
-    }
-  },
-
-  {
-    path: "/about",
-    name: "About",
-    component: About,
-    meta: {
-      layout: "AppLayoutUser",
-      requiresAuth: true,
     }
   },
 
@@ -53,7 +43,7 @@ const routes = [
   {
     path: "/register",
     name: "Register",
-    component: Register,
+    component: UserRegister,
     meta: {
       layout: "AppLayoutUser",
       requiresAuth: false,
@@ -64,13 +54,32 @@ const routes = [
   {
     path: "/login",
     name: "Login",
-    component: Login,
+    component: UserLogin,
     meta: {
       layout: "AppLayoutUser",
       requiresAuth: false,     
     },
     beforeEnter: (to, from, next) => checkGuest(next)
   },
+
+  //*---------------------------------------------------------------------------------------
+  // admin route
+  //*---------------------------------------------------------------------------------------
+
+  {
+    path: "/admin/login",
+    name: "AdminLogin",
+    component: AdminLogin,
+    meta: {
+      layout: "AppLayoutUser",
+      requiresAuth: false,     
+    },
+    beforeEnter: (to, from, next) => checkGuest(next)
+  },
+
+  //*---------------------------------------------------------------------------------------
+  // public route
+  //*---------------------------------------------------------------------------------------
 
   {
     path: '/:pathMatch(.*)*',

@@ -1,4 +1,4 @@
-import Client from './Clients/AxiosClient';
+import Client from '../Clients/AxiosClient';
 
 const resource = 'carts'
 

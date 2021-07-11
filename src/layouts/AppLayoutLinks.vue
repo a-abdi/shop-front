@@ -41,7 +41,7 @@
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     <router-link to="/cart" class="w-6 h-6 mr-2 focus:outline-none bg-cart bg-no-repeat text-white text-xs bg-center">
                         <span class="inline-flex bg-red-600 py-.5 px-1 rounded-full mt-4 mr-5">
-                            {{ countCart }}
+                            {{ cartCount }}
                         </span>
                     </router-link>
                     <button class="bg-gray-50 p-1 rounded-full text-gray-600 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-300 focus:ring-gray-200">
@@ -73,7 +73,7 @@
                             <!-- Active: "bg-gray-100", Not Active: "" -->
                             <a href="#" class="block px-4 py-2 text-sm text-gray-600" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                             <a href="#" class="block px-4 py-2 text-sm text-gray-600" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                            <button @click="signOut" class="block px-4 py-2 text-sm text-gray-600" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</button>
+                            <button @click="userSignOut" class="block px-4 py-2 text-sm text-gray-600" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</button>
                         </div>
                     </div>
                 </div>
@@ -108,13 +108,13 @@ export default {
     setup () {
         const store = useStore()
         
-        const signOut = () => store.dispatch('signOut')
+        const userSignOut = () => store.dispatch('userSignOut')
 
         store.dispatch('getCart')
 
         return {
-            countCart: computed(() => store.getters.countCart),
-            signOut,
+            cartCount: computed(() => store.getters.cartCount),
+            userSignOut,
         }
     }
 }
