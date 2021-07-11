@@ -32,8 +32,8 @@ export default createStore({
       },
 
       clearUserData () {
-        localStorage.removeItem('user');
-        location.reload();
+        localStorage.removeItem('user')
+        location.reload()
       },
 
       setCartData (state, cartData) {

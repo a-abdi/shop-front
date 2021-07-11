@@ -71,7 +71,7 @@ const routes = [
     name: "AdminLogin",
     component: AdminLogin,
     meta: {
-      layout: "AppLayoutUser",
+      layout: "AppLayoutAdmin",
       requiresAuth: false,     
     },
     beforeEnter: (to, from, next) => checkGuest(next)

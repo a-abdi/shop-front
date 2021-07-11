@@ -39,11 +39,6 @@
                     </div>
                 </div>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    <router-link to="/cart" class="w-6 h-6 mr-2 focus:outline-none bg-cart bg-no-repeat text-white text-xs bg-center">
-                        <span class="inline-flex bg-red-600 py-.5 px-1 rounded-full mt-4 mr-5">
-                            {{ cartCount }}
-                        </span>
-                    </router-link>
                     <button class="bg-gray-50 p-1 rounded-full text-gray-600 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-300 focus:ring-gray-200">
                         <span class="sr-only">View notifications</span>
                         <!-- Heroicon name: outline/bell -->
@@ -56,7 +51,7 @@
                         <div>
                             <button @click="openUserMenu = !openUserMenu" type="button" class="bg-gray-50 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-300 focus:ring-gray-200" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full" src="../assets/ali.jpg"/>
+                                <img class="h-8 w-8 rounded-full" src="../../assets/ali.jpg"/>
                             </button>
                         </div>
                         <!--
@@ -84,8 +79,6 @@
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a href="#" class="bg-gray-50 text-gray-900 block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
-
-                <router-link to="/" class="text-gray-600 hover:bg-gray-50 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"> Home </router-link>
             </div>
         </div>
     </nav>
@@ -110,10 +103,7 @@ export default {
         
         const userSignOut = () => store.dispatch('userSignOut')
 
-        store.dispatch('getCart')
-
         return {
-            cartCount: computed(() => store.getters.cartCount),
             userSignOut,
         }
     }
