@@ -83,7 +83,7 @@
                     await store.dispatch('addToCart', { productId })
 
                 } catch (e) {
-                    console.log(e)
+                    
                 }
             }
 
