@@ -3,6 +3,7 @@ import ProductRepository from '../repositories/ProductRepository'
 import AuthRepository from '../repositories/User/AuthRepository'
 import CartRepository from '../repositories/User/CartRepository'
 import UserClient from '../repositories/User/Clients/AxiosClient'
+import AdminClient from '../repositories/Admin/Clients/AxiosClient'
 import AdminAuthRepsitory from "../repositories/Admin/AuthRepository"
 
 export default createStore({
@@ -11,10 +12,8 @@ export default createStore({
         products: null,
         product: null,
         cart: null,
-        user: {
-          data: null,
-          isAdmin: false
-        },
+        user: null,
+        admin: null,
       }
     },
 
@@ -31,13 +30,14 @@ export default createStore({
 
       setUserData (state, userData) {
         state.user = userData
-        localStorage.setItem('user', JSON.stringify( userData))
+        localStorage.setItem('user', JSON.stringify(userData))
         UserClient.defaults.headers.common['Authorization'] = `Bearer ${userData.data.token}`
       },
 
-      clearUserData () {
-        localStorage.removeItem('user')
-        location.reload()
+      setAdminData (state, adminData) {
+        state.admin = adminData
+        localStorage.setItem('admin', JSON.stringify(adminData))
+        AdminClient.defaults.headers.common['Authorization'] = `Bearer ${adminData.data.token}`
       },
 
       setCartData (state, cartData) {
@@ -45,14 +45,23 @@ export default createStore({
         localStorage.setItem('cart', JSON.stringify( cartData ))
       },
 
-      clearCartData () {
-        localStorage.removeItem('cart');
+      clearData ({}, item) {
+        localStorage.removeItem(item);
       },
     },
 
     getters: {
-      isGuest(state) {
-        if(!state.user.data) {
+      authUser(state) {
+        if(state.user) {
+          return true
+
+        } else {
+          return false
+        }
+      },
+
+      authAdmin(state) {
+        if(state.admin) {
           return true
 
         } else {
@@ -98,15 +107,20 @@ export default createStore({
         commit('setCartData', cart.data)
       },
 
-      async adminLogin ({ commit }, userData) {
-        const user = await AdminAuthRepsitory.adminLogin(userData)
-        user.data.isAdmin = true
-        commit('setUserData', user.data)
+      async adminLogin ({ commit }, adminData) {
+        const admin = await AdminAuthRepsitory.adminLogin(adminData)
+        commit('setAdminData', admin.data)
       },
 
       userSignOut({ commit }) {
-        commit('clearCartData')
-        commit('clearUserData')
+        commit('clearData', 'user')
+        commit('clearData', 'cart')
+        location.reload()
+      },
+
+      adminSignOut({ commit }) {
+        commit('clearData', 'admin')
+        location.reload()
       }
     }
 })

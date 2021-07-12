@@ -1,7 +1,7 @@
 <template>
     <div>
         <header/>
-        <AdminLinks v-if="isAdmin" />
+        <AdminLinks v-if="authAdmin" />
         <slot/>
     </div>
 </template>
@@ -22,7 +22,7 @@ export default {
         const store = useStore()
 
         return {
-            isAdmin: computed( () => store.state.user.isAdmin)
+            authAdmin: computed( () => store.getters.authAdmin)
         }
     }
 }

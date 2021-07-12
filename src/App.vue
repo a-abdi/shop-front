@@ -18,10 +18,15 @@
     setup () {
       const userData = localStorage.getItem('user')
       const cartData = localStorage.getItem('cart')
+      const adminData = localStorage.getItem('admin')
       const store = useStore()
 
       if (userData) {
         store.commit('setUserData', JSON.parse(userData))
+      }
+
+      if (adminData) {
+        store.commit('setAdminData', JSON.parse(adminData))
       }
 
       if (cartData) {
