@@ -31,8 +31,6 @@
                 <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="hidden sm:block sm:ml-6">
                         <div class="flex space-x-4">
-                            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <!-- <a href="#" class="bg-gray-50 text-gray-900 px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Dashboard</a> -->
                             <router-link to="/admin/dashboard" class="bg-gray-50 text-gray-900 px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Dashboard</router-link>
                             <router-link to="/" class="text-gray-600 hover:bg-gray-50 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"> Home </router-link>
                         </div>
@@ -77,9 +75,7 @@
         <!-- Mobile menu, show/hide based on menu state. -->
         <div v-show="openMainMenu"  class="sm:hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <router-link to="/admin/dashboard" class="bg-gray-50 text-gray-900 block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</router-link>
-                <!-- <a href="#" class="bg-gray-50 text-gray-900 block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a> -->
             </div>
         </div>
     </nav>
