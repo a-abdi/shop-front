@@ -3,6 +3,7 @@ import ProductRepository from '../repositories/ProductRepository'
 import AuthRepository from '../repositories/User/AuthRepository'
 import CartRepository from '../repositories/User/CartRepository'
 import Client from '../repositories/Clients/AxiosClient'
+import AdminAuthRepsitory from "../repositories/Admin/AuthRepository"
 
 export default createStore({
     state () {
@@ -10,7 +11,10 @@ export default createStore({
         products: null,
         product: null,
         cart: null,
-        user: null,
+        user: {
+          data: null,
+          isAdmin: false
+        },
       }
     },
 
@@ -47,8 +51,8 @@ export default createStore({
     },
 
     getters: {
-      userIsGuest(state) {
-        if(!state.user) {
+      isGuest(state) {
+        if(!state.user.data) {
           return true
 
         } else {
@@ -92,6 +96,12 @@ export default createStore({
       async addToCart ({ commit }, productId) {
         const cart = await CartRepository.create(productId)
         commit('setCartData', cart.data)
+      },
+
+      async adminLogin ({ commit }, userData) {
+        const user = await AdminAuthRepsitory.adminLogin(userData)
+        user.data.isAdmin = true
+        commit('setUserData', user.data)
       },
 
       userSignOut({ commit }) {

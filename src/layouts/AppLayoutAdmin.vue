@@ -1,7 +1,7 @@
 <template>
     <div>
         <header/>
-        <AdminLinks  />
+        <AdminLinks v-if="isAdmin" />
         <slot/>
     </div>
 </template>
@@ -20,8 +20,9 @@ export default {
 
     setup () {
         const store = useStore()
+
         return {
-            userIsGuest: computed( () => store.getters.userIsGuest)
+            isAdmin: computed( () => store.state.user.isAdmin)
         }
     }
 }

@@ -48,9 +48,9 @@ export default {
             form.loading = true
             error.value = null
             try {
-                await store.dispatch('userLogin', form)
+                await store.dispatch('adminLogin', form)
                 router.push({
-                    name: 'Home'
+                    name: 'AdminDashboard'
                 })
                 
             } catch (e) {

@@ -8,6 +8,7 @@ import UserLogin from "../views/User/Login.vue"
 import checkAuth from "../middlewares/beforeEachAuth"
 import checkGuest from "../middlewares/beforeEnterGuest"
 import AdminLogin from "../views/Admin/Login.vue"
+import AdminDashboard from "../views/Admin/Dashboard.vue"
 
 const routes = [
   {
@@ -65,7 +66,6 @@ const routes = [
   //*---------------------------------------------------------------------------------------
   // admin route
   //*---------------------------------------------------------------------------------------
-
   {
     path: "/admin/login",
     name: "AdminLogin",
@@ -77,10 +77,19 @@ const routes = [
     beforeEnter: (to, from, next) => checkGuest(next)
   },
 
+  {
+    path: "/admin/dashboard",
+    name: "AdminDashboard",
+    component: AdminDashboard,
+    meta: {
+      layout: "AppLayoutAdmin",
+      requiresAuth: false,  
+    }
+  },
+
   //*---------------------------------------------------------------------------------------
   // public route
   //*---------------------------------------------------------------------------------------
-
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound', 
