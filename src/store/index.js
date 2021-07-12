@@ -5,6 +5,7 @@ import CartRepository from '../repositories/User/CartRepository'
 import UserClient from '../repositories/User/Clients/AxiosClient'
 import AdminClient from '../repositories/Admin/Clients/AxiosClient'
 import AdminAuthRepsitory from "../repositories/Admin/AuthRepository"
+import AdminProductRepsitory from "../repositories/Admin/ProductRepository"
 
 export default createStore({
     state () {
@@ -37,7 +38,7 @@ export default createStore({
       setAdminData (state, adminData) {
         state.admin = adminData
         localStorage.setItem('admin', JSON.stringify(adminData))
-        AdminClient.defaults.headers.common['Authorization'] = `Bearer ${adminData.data.token}`
+        AdminClient.defaults.headers.common['Authorization'] = `Bearer ${adminData.data}`
       },
 
       setCartData (state, cartData) {
@@ -110,6 +111,12 @@ export default createStore({
       async adminLogin ({ commit }, adminData) {
         const admin = await AdminAuthRepsitory.adminLogin(adminData)
         commit('setAdminData', admin.data)
+      },
+
+      async adminGetProducts ({ commit }) {
+        console.log( await AdminProductRepsitory.index())
+        // const admin = await AdminAuthRepsitory.adminLogin(adminData)
+        // commit('setAdminData', admin.data)
       },
 
       userSignOut({ commit }) {

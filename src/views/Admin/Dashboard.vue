@@ -18,7 +18,7 @@
             </div>
         </div>
         <div>
-            haaaaaaaaahhhahaha
+            <button @click="getProducts" class="bg-red-200">Get Products</button>
         </div>
     </div>
 </template>
@@ -30,7 +30,11 @@ export default {
     setup() {
         const store = useStore()
 
-        
+        const getProducts = () => store.dispatch('adminGetProducts')
+
+        return {
+            getProducts
+        }
     }
 }
 </script>
