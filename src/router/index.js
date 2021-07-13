@@ -11,6 +11,7 @@ import AdminProducts from "../views/Admin/Dashboard/Products.vue"
 import AdminUsers from "../views/Admin/Dashboard/Users.vue"
 import AdminCarts from "../views/Admin/Dashboard/Carts.vue"
 import AdminCategories from "../views/Admin/Dashboard/Categories.vue"
+import AddProduct from "../views/Admin/Dashboard/Products/AddProduct.vue"
 
 // middlewares
 import AuthUser from "../middlewares/beforeEachAuthUser"
@@ -89,7 +90,13 @@ const routes = [
 
       {
         path: "products",
-        component: AdminProducts
+        component: AdminProducts,
+        children: [
+          {
+            path: "add",
+            component: AddProduct
+          }
+        ]
       },
 
       {

@@ -4,8 +4,9 @@ import AuthRepository from '../repositories/User/AuthRepository'
 import CartRepository from '../repositories/User/CartRepository'
 import UserClient from '../repositories/User/Clients/AxiosClient'
 import AdminClient from '../repositories/Admin/Clients/AxiosClient'
-import AdminAuthRepsitory from "../repositories/Admin/AuthRepository"
-import AdminProductRepsitory from "../repositories/Admin/ProductRepository"
+import AdminAuthRepository from "../repositories/Admin/AuthRepository"
+import AdminProductRepository from "../repositories/Admin/ProductRepository"
+import AdminCategoryRepository from "../repositories/Admin/CategoryRepository"
 
 export default createStore({
     state () {
@@ -15,6 +16,7 @@ export default createStore({
         cart: null,
         user: null,
         admin: null,
+        categories: null,
       }
     },
 
@@ -39,6 +41,11 @@ export default createStore({
         state.admin = adminData
         localStorage.setItem('admin', JSON.stringify(adminData))
         AdminClient.defaults.headers.common['Authorization'] = `Bearer ${adminData.data}`
+      },
+
+      setCategories (state, response) {
+        const { data } = response
+        state.categories = data
       },
 
       setCartData (state, cartData) {
@@ -109,14 +116,18 @@ export default createStore({
       },
 
       async adminLogin ({ commit }, adminData) {
-        const admin = await AdminAuthRepsitory.adminLogin(adminData)
+        const admin = await AdminAuthRepository.adminLogin(adminData)
         commit('setAdminData', admin.data)
       },
 
       async adminGetProducts ({ commit }) {
-        console.log( await AdminProductRepsitory.index())
-        // const admin = await AdminAuthRepsitory.adminLogin(adminData)
+        console.log( await AdminProductRepository.index())
+        // const admin = await AdminAuthRepository.adminLogin(adminData)
         // commit('setAdminData', admin.data)
+      },
+
+      async adminGetCayegories ({commit}) {
+        commit('setCategories', await AdminCategoryRepository.index())
       },
 
       userSignOut({ commit }) {
