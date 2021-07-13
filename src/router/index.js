@@ -6,7 +6,11 @@ import NotFound from "../views/NotFound.vue"
 import UserRegister from "../views/User/Register.vue"
 import UserLogin from "../views/User/Login.vue"
 import AdminLogin from "../views/Admin/Login.vue"
-import AdminDashboard from "../views/Admin/Dashboard.vue"
+import AdminDashboard from "../views/Admin/Dashboard/Index.vue"
+import AdminProducts from "../views/Admin/Dashboard/Products.vue"
+import AdminUsers from "../views/Admin/Dashboard/Users.vue"
+import AdminCarts from "../views/Admin/Dashboard/Carts.vue"
+import AdminCategories from "../views/Admin/Dashboard/Categories.vue"
 
 // middlewares
 import AuthUser from "../middlewares/beforeEachAuthUser"
@@ -76,7 +80,28 @@ const routes = [
       layout: "AppLayoutAdmin",
       requiresAuthUser: false,
       requiresAuthAdmin: true,
-    }
+    },
+    children: [
+      {
+        path: "users",
+        component: AdminUsers
+      },
+
+      {
+        path: "products",
+        component: AdminProducts
+      },
+
+      {
+        path: "carts",
+        component: AdminCarts
+      },
+
+      {
+        path: "categories",
+        component: AdminCategories
+      },
+    ]
   },
   
   //*---------------------------------------------------------------------------------------

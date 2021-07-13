@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="h-screen overflow-hidden">
         <header/>
         <AdminLinks v-if="authAdmin" />
-        <slot/>
+        <slot />
     </div>
 </template>
 

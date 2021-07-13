@@ -1,6 +1,6 @@
 <template>
   <AppLayout>  
-    <router-view class="bg-white md:my-4 my-2"/>
+    <router-view class="bg-white"/>
   </AppLayout> 
 </template>
 
