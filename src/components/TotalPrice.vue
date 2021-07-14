@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="discount != 0">
+        <div v-if="discount != 0 && discount">
             <div class="flex flex-row py-2">
                 <div class="pr-4">
                     <p class="line-through text-gray-400">
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div v-else class="pt-2 pb-8">
-            ${{ formatPrice(Price) }}
+           ${{ formatPrice(price) }}
         </div>
     </div>
 </template>

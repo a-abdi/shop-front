@@ -126,6 +126,11 @@ export default createStore({
         // commit('setAdminData', admin.data)
       },
 
+      async addProduct({commit}, productData) {
+        const { data } = await AdminProductRepository.create(productData)
+        return data
+      },
+
       async adminGetCayegories ({commit}) {
         commit('setCategories', await AdminCategoryRepository.index())
       },
