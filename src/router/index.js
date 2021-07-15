@@ -7,11 +7,11 @@ import UserRegister from "../views/User/Register.vue"
 import UserLogin from "../views/User/Login.vue"
 import AdminLogin from "../views/Admin/Login.vue"
 import AdminDashboard from "../views/Admin/Dashboard/Index.vue"
-import AdminProducts from "../views/Admin/Dashboard/Products.vue"
+import AdminProducts from "../views/Admin/Dashboard/Products/Index.vue"
 import AdminUsers from "../views/Admin/Dashboard/Users.vue"
 import AdminCarts from "../views/Admin/Dashboard/Carts.vue"
 import AdminCategories from "../views/Admin/Dashboard/Categories.vue"
-import AddProduct from "../views/Admin/Dashboard/Products/AddProduct.vue"
+import AdminAddProduct from "../views/Admin/Dashboard/Products/AddProduct.vue"
 
 // middlewares
 import AuthUser from "../middlewares/beforeEachAuthUser"
@@ -94,7 +94,7 @@ const routes = [
         children: [
           {
             path: "add",
-            component: AddProduct
+            component: AdminAddProduct
           }
         ]
       },

@@ -1,7 +1,7 @@
 import Client from './Clients/AxiosClient'
 
 export default {
-    adminLogin (adminData) {
+    Login (adminData) {
         return Client.post('/login', adminData)
     }
 };

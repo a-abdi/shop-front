@@ -3,20 +3,28 @@ import ProductRepository from '../repositories/ProductRepository'
 import AuthRepository from '../repositories/User/AuthRepository'
 import CartRepository from '../repositories/User/CartRepository'
 import UserClient from '../repositories/User/Clients/AxiosClient'
-import AdminClient from '../repositories/Admin/Clients/AxiosClient'
-import AdminAuthRepository from "../repositories/Admin/AuthRepository"
-import AdminProductRepository from "../repositories/Admin/ProductRepository"
-import AdminCategoryRepository from "../repositories/Admin/CategoryRepository"
+
+import AdminModule from "./modules/admins"
+import CartModule from "./modules/cart"
+import ProductsModule from "./modules/products"
+import UsersModule from "./modules/users"
+import CategoriesModule from "./modules/categories"
 
 export default createStore({
+    modules: {
+      admin: AdminModule,
+      cart: CartModule,
+      products: ProductsModule,
+      users: UsersModule,
+      categories: CategoriesModule,
+    },
+
     state () {
       return {
         products: null,
         product: null,
         cart: null,
         user: null,
-        admin: null,
-        categories: null,
       }
     },
 
@@ -37,17 +45,6 @@ export default createStore({
         UserClient.defaults.headers.common['Authorization'] = `Bearer ${userData.data.token}`
       },
 
-      setAdminData (state, adminData) {
-        state.admin = adminData
-        localStorage.setItem('admin', JSON.stringify(adminData))
-        AdminClient.defaults.headers.common['Authorization'] = `Bearer ${adminData.data}`
-      },
-
-      setCategories (state, response) {
-        const { data } = response
-        state.categories = data
-      },
-
       setCartData (state, cartData) {
         state.cart = cartData
         localStorage.setItem('cart', JSON.stringify( cartData ))
@@ -61,15 +58,6 @@ export default createStore({
     getters: {
       authUser(state) {
         if(state.user) {
-          return true
-
-        } else {
-          return false
-        }
-      },
-
-      authAdmin(state) {
-        if(state.admin) {
           return true
 
         } else {
@@ -115,35 +103,10 @@ export default createStore({
         commit('setCartData', cart.data)
       },
 
-      async adminLogin ({ commit }, adminData) {
-        const admin = await AdminAuthRepository.adminLogin(adminData)
-        commit('setAdminData', admin.data)
-      },
-
-      async adminGetProducts ({ commit }) {
-        console.log( await AdminProductRepository.index())
-        // const admin = await AdminAuthRepository.adminLogin(adminData)
-        // commit('setAdminData', admin.data)
-      },
-
-      async addProduct({commit}, productData) {
-        const { data } = await AdminProductRepository.create(productData)
-        return data
-      },
-
-      async adminGetCayegories ({commit}) {
-        commit('setCategories', await AdminCategoryRepository.index())
-      },
-
       userSignOut({ commit }) {
         commit('clearData', 'user')
         commit('clearData', 'cart')
         location.reload()
       },
-
-      adminSignOut({ commit }) {
-        commit('clearData', 'admin')
-        location.reload()
-      }
     }
 })

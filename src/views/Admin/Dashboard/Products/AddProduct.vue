@@ -29,7 +29,7 @@
                     {{ form.error.message }}
                 </div>
                  <div v-if="form.success" class="text-center py-1 px-2 rounded-md text-white bg-green-600">
-                    {{ form.success.message }}
+                    {{ form.success.data.message }}
                 </div>
                 <div class="mt-6 mb-3 w-full">
                     <textarea v-model="form.description" placeholder="description" class="p-2 text-gray-600 resize-y border rounded-md w-full h-16 sm:h-24 md:h-32 xl:h-40 focus:outline-none focus:ring-2 focus:ring-blue-200"></textarea>
@@ -61,7 +61,7 @@ export default {
             success: null,
         })
 
-        const categories = store.dispatch('adminGetCayegories')
+        store.dispatch('admin/getCayegories')
 
         const onFileChange = (e) => {
             const file = e.target.files[0]
@@ -84,7 +84,7 @@ export default {
             formData.append('description', form.description)
 
             try {
-               form.success = await store.dispatch('addProduct', formData)
+               form.success = await store.dispatch('admin/addProduct', formData)
 
             } catch (error) {
                 form.error = error.response.data
@@ -98,7 +98,7 @@ export default {
             onFileChange,
             imageUrl,
             addProduct,
-            categories: computed( () => store.state.categories),
+            categories: computed( () => store.getters['admin/categories']),
         }
     }
 }

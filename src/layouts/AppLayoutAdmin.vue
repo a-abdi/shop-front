@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen overflow-hidden">
         <header/>
-        <AdminLinks v-if="authAdmin" />
+        <AdminLinks v-if="isLoggined" />
         <slot />
     </div>
 </template>
@@ -22,7 +22,7 @@ export default {
         const store = useStore()
 
         return {
-            authAdmin: computed( () => store.getters.authAdmin)
+            isLoggined: computed( () => store.getters['admin/isLoggined'])
         }
     }
 }
