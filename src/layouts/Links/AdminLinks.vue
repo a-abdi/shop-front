@@ -95,7 +95,7 @@ export default {
         const userMenu = ref(false)
         const mainMenu = ref(false)
         
-        const signOut = () => store.dispatch('admin/signOut')
+        const signOut = () => store.dispatch('adminAuth/signOut')
         const closeUserMenu = () => userMenu.value = false
 
         return {
