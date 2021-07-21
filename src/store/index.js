@@ -1,20 +1,17 @@
 import { createStore } from 'vuex'
 import ProductRepository from '../repositories/ProductRepository'
-
-import AdminModule from "./modules/admins"
 import UserCartModule from "./modules/user/cart"
-import ProductsModule from "./modules/products"
 import UserAuthModule from "./modules/user/auth"
+import AdminProductsModule from "./modules/admin/products"
 import AdminAuthModule from "./modules/admin/auth"
-import CategoriesModule from "./modules/categories"
+import AdminCategoriesModule from "./modules/admin/categories"
 
 export default createStore({
     modules: {
-      admin: AdminModule,
       adminAuth: AdminAuthModule,
+      adminCategories: AdminCategoriesModule,
+      adminProducts: AdminProductsModule,
       userCart: UserCartModule,
-      categories: CategoriesModule,
-      products: ProductsModule,
       userAuth: UserAuthModule,
     },
 

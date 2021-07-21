@@ -61,7 +61,7 @@ export default {
             success: null,
         })
 
-        store.dispatch('admin/getCayegories')
+        store.dispatch('adminCategories/getCayegories')
 
         const onFileChange = (e) => {
             const file = e.target.files[0]
@@ -84,7 +84,7 @@ export default {
             formData.append('description', form.description)
 
             try {
-               form.success = await store.dispatch('admin/addProduct', formData)
+               form.success = await store.dispatch('adminProducts/addProduct', formData)
 
             } catch (error) {
                 form.error = error.response.data
@@ -98,7 +98,7 @@ export default {
             onFileChange,
             imageUrl,
             addProduct,
-            categories: computed( () => store.getters['admin/categories']),
+            categories: computed( () => store.getters['adminCategories/categories']),
         }
     }
 }

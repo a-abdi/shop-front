@@ -1,5 +1,4 @@
-import ProductRepository from "../../repositories/Admin/ProductRepository"
-import CategoryRepository from "../../repositories/Admin/CategoryRepository"
+import CategoryRepository from "../../../repositories/Admin/CategoryRepository"
 
 export default {
     namespaced: true,
@@ -16,14 +15,6 @@ export default {
     },
 
     actions: {
-        async getProducts ({ commit }) {
-            console.log( await ProductRepository.index())
-        },
-
-        async addProduct({commit}, productData) {
-            return await ProductRepository.create(productData)
-        },
-
         async getCayegories ({commit}) {
             commit('setCategories', await CategoryRepository.index())
         },
