@@ -66,7 +66,7 @@
                             <!-- Active: "bg-gray-100", Not Active: "" -->
                             <a href="#" class="block px-4 py-2 text-sm text-gray-600" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                             <a href="#" class="block px-4 py-2 text-sm text-gray-600" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                            <button @click="adminSignOut" class="text-left w-full focus:outline-none block px-4 py-2 text-sm text-gray-600" role="menuitem" tabindex="-1" id="user-menu-item-2">
+                            <button @click="signOut" class="text-left w-full focus:outline-none block px-4 py-2 text-sm text-gray-600" role="menuitem" tabindex="-1" id="user-menu-item-2">
                                 Sign out
                             </button>
                         </div>
@@ -95,11 +95,11 @@ export default {
         const userMenu = ref(false)
         const mainMenu = ref(false)
         
-        const adminSignOut = () => store.dispatch('admin/signOut')
+        const signOut = () => store.dispatch('admin/signOut')
         const closeUserMenu = () => userMenu.value = false
 
         return {
-            adminSignOut,
+            signOut,
             closeUserMenu,
             userMenu,
             mainMenu,

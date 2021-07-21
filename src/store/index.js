@@ -4,12 +4,14 @@ import ProductRepository from '../repositories/ProductRepository'
 import AdminModule from "./modules/admins"
 import UserCartModule from "./modules/user/cart"
 import ProductsModule from "./modules/products"
-import UserAuthModule from "./modules/user/Auth"
+import UserAuthModule from "./modules/user/auth"
+import AdminAuthModule from "./modules/admin/auth"
 import CategoriesModule from "./modules/categories"
 
 export default createStore({
     modules: {
       admin: AdminModule,
+      adminAuth: AdminAuthModule,
       userCart: UserCartModule,
       categories: CategoriesModule,
       products: ProductsModule,

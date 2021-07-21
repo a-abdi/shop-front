@@ -26,7 +26,7 @@
       }
 
       if (adminData) {
-        store.commit('admin/setAdminData', JSON.parse(adminData))
+        store.commit('adminAuth/setAdminData', JSON.parse(adminData))
       }
 
       if (cartData) {

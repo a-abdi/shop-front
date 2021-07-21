@@ -22,7 +22,7 @@ export default {
         const store = useStore()
 
         return {
-            isLoggined: computed( () => store.getters['admin/isLoggined'])
+            isLoggined: computed( () => store.getters['adminAuth/checkAuth'])
         }
     }
 }
