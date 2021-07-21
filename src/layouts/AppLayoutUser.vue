@@ -1,9 +1,9 @@
 <template>
     <div>
         <header/>
-        <AdminLinks v-if="authAdmin && !authUser" />
-        <UserLinks v-if="authUser" />
-        <GuestLinks v-else-if="!authAdmin" />
+        <AdminLinks v-if="adminIsLoggined && !userIsLoggined" />
+        <UserLinks v-if="userIsLoggined" />
+        <GuestLinks v-else-if="!adminIsLoggined" />
         <slot/>
     </div>
 </template>
@@ -27,8 +27,8 @@ export default {
     setup () {
         const store = useStore()
         return {
-            authUser: computed( () => store.getters.authUser),
-            authAdmin: computed( () => store.getters.authAdmin)
+            userIsLoggined: computed( () => store.getters.authUser),
+            adminIsLoggined: computed( () => store.getters['admin/isLoggined'])
         }
     }
 }

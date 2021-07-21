@@ -1,6 +1,6 @@
 <template>
     <div class="flex w-sm sm:w-full overflow-x-auto">
-        <div class="w-3/4">
+        <div class="w-3/4" v-if="cart">
             <div v-for="product in cart.data" :key="product.id" class="flex p-.5 sm:p-1 md:p-2 text-xs md:text-sm">
                 <div class="w-1/3">
                     <img :src="product.image_src" alt="" class="w-auto h-auto min-w-full max-w-40 max-h-24 sm:max-h-32 md:max-h-40 lg:max-h-48 xl:max-h-56 max-w-full">
@@ -30,15 +30,14 @@ import Checkout from '../../components/Checkout.vue'
 export default {
     components: {
             TotalPrice,
-            Checkout
+            Checkout,
         },
 
     setup () {
         const store = useStore()
 
         return {
-            cart: computed(() => store.state.cart)
-
+            cart: computed(() => store.getters['userCart/cart']),
         }
     }
 }

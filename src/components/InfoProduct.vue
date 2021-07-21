@@ -80,7 +80,7 @@
 
             const addToCart = async () => {
                 try {
-                    await store.dispatch('addToCart', { productId })
+                    await store.dispatch('userCart/addToCart', { productId })
 
                 } catch (e) {
                     

@@ -108,10 +108,10 @@ export default {
         const userSignOut = () => store.dispatch('userSignOut')
         const closeUserMenu = () => userMenu.value = false
 
-        store.dispatch('getCart')
+        store.dispatch('userCart/getCart')
 
         return {
-            cartCount: computed(() => store.getters.cartCount),
+            cartCount: computed(() => store.getters['userCart/cartCount']),
             userSignOut,
             closeUserMenu,
             userMenu,

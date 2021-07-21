@@ -22,10 +22,6 @@ export default {
             const { data } = response
             state.categories = data
         },
-
-        clearData ({}, item) {
-            localStorage.removeItem(item);
-        },
     },
 
     actions: {
@@ -47,7 +43,7 @@ export default {
         },
 
         signOut({ commit }) {
-            commit('clearData', 'admin')
+            commit('clearData', 'admin', { root: true })
             location.reload()
         }
     },

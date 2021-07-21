@@ -41,7 +41,7 @@ export default {
         const store = useStore()
         const sumPrice = ref(0)
         const sumDiscount = ref(0)
-        const cart = store.state.cart
+        const cart = store.getters['userCart/cart']
 
         const formatPrice = (price) => {
             let val = (price/1).toFixed(2).replace('.', ',')

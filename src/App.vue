@@ -30,7 +30,7 @@
       }
 
       if (cartData) {
-        store.commit('setCartData', JSON.parse(cartData))
+        store.commit('userCart/setCartData', JSON.parse(cartData))
       }
       
       return {

@@ -5,7 +5,7 @@ import CartRepository from '../repositories/User/CartRepository'
 import UserClient from '../repositories/User/Clients/AxiosClient'
 
 import AdminModule from "./modules/admins"
-import CartModule from "./modules/cart"
+import UserCartModule from "./modules/user/cart"
 import ProductsModule from "./modules/products"
 import UsersModule from "./modules/users"
 import CategoriesModule from "./modules/categories"
@@ -13,17 +13,16 @@ import CategoriesModule from "./modules/categories"
 export default createStore({
     modules: {
       admin: AdminModule,
-      cart: CartModule,
+      userCart: UserCartModule,
+      categories: CategoriesModule,
       products: ProductsModule,
       users: UsersModule,
-      categories: CategoriesModule,
     },
 
     state () {
       return {
         products: null,
         product: null,
-        cart: null,
         user: null,
       }
     },
@@ -43,11 +42,6 @@ export default createStore({
         state.user = userData
         localStorage.setItem('user', JSON.stringify(userData))
         UserClient.defaults.headers.common['Authorization'] = `Bearer ${userData.data.token}`
-      },
-
-      setCartData (state, cartData) {
-        state.cart = cartData
-        localStorage.setItem('cart', JSON.stringify( cartData ))
       },
 
       clearData ({}, item) {
@@ -93,16 +87,6 @@ export default createStore({
         commit('setUserData', user.data)
       },
       
-      async getCart ({ commit }) {
-        const cart = await CartRepository.index()
-        commit('setCartData', cart.data)
-      },
-
-      async addToCart ({ commit }, productId) {
-        const cart = await CartRepository.create(productId)
-        commit('setCartData', cart.data)
-      },
-
       userSignOut({ commit }) {
         commit('clearData', 'user')
         commit('clearData', 'cart')
