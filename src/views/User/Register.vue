@@ -57,7 +57,7 @@ export default {
             error.value = null
             response.value = null
             try {
-                response.value = await store.dispatch('userRegister', form)
+                response.value = await store.dispatch('userAuth/register', form)
                 form.loading = false
                 
             } catch (e) {

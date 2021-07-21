@@ -22,7 +22,7 @@
       const store = useStore()
 
       if (userData) {
-        store.commit('setUserData', JSON.parse(userData))
+        store.commit('userAuth/setUserData', JSON.parse(userData))
       }
 
       if (adminData) {

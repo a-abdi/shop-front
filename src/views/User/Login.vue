@@ -44,7 +44,7 @@ export default {
             form.loading = true
             error.value = null
             try {
-                await store.dispatch('userLogin', form)
+                await store.dispatch('userAuth/login', form)
                 router.push({
                     name: 'Home'
                 })

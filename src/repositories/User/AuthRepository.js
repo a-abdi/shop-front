@@ -1,11 +1,11 @@
 import Client from './Clients/AxiosClient'
 
 export default {
-    userRegister (userData) {
+    register (userData) {
         return Client.post('register', userData)
     },
 
-    userLogin (userData) {
+    login (userData) {
         return Client.post('login', userData)
     }
 };

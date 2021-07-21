@@ -105,7 +105,7 @@ export default {
         const userMenu = ref(false)
         const mainMenu = ref(false)
         
-        const userSignOut = () => store.dispatch('userSignOut')
+        const userSignOut = () => store.dispatch('userAuth/signOut')
         const closeUserMenu = () => userMenu.value = false
 
         store.dispatch('userCart/getCart')
