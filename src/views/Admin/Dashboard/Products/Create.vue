@@ -84,7 +84,7 @@ export default {
             formData.append('description', form.description)
 
             try {
-               form.success = await store.dispatch('adminProducts/addProduct', formData)
+               form.success = await store.dispatch('adminProducts/createProduct', formData)
 
             } catch (error) {
                 form.error = error.response.data

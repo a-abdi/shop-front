@@ -24,7 +24,7 @@
                     <td class="td"> {{ product.quantity }} </td>
                     <td class="td"> <router-link :to="`/admin/dashboard/products/${product.id}`"  class="base-btn bg-blue-500 hover:bg-blue-600 focus:bg-blue-700"> Details </router-link > </td>
                     <td class="td"> <button class="base-btn bg-yellow-500 hover:bg-yellow-600 focus:bg-yellow-700"> Edit </button> </td>
-                    <td class="td"> <button class="base-btn bg-red-500 hover:bg-red-600 focus:bg-red-700"> Delete </button> </td>
+                    <td class="td"> <button @click="deleteProduct(product.id)" class="base-btn bg-red-500 hover:bg-red-600 focus:bg-red-700"> Delete </button> </td>
                 </tr>
             </tbody>
         </table>
@@ -46,8 +46,24 @@ export default {
 
         store.dispatch('adminProducts/getProducts')
 
+        const deleteProduct = async (productId) => {
+            const answer = window.confirm(
+                'Do you really want to delete product?'
+            )
+            try {
+                if(answer) {
+                    await store.dispatch('adminProducts/deleteProduct', productId)
+                    store.dispatch('adminProducts/getProducts')
+                } 
+            } catch (error) {
+                
+            }
+           
+        }
+
         return {
             products: computed ( () => store.getters['adminProducts/products'] ),
+            deleteProduct,
         }
     }
 }

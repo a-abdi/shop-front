@@ -29,9 +29,14 @@ export default {
             commit('setProduct', await ProductRepository.show(productId))
         },
 
-        async addProduct({commit}, productData) {
+        async createProduct({}, productData) {
             return await ProductRepository.create(productData)
         },
+
+        async deleteProduct({}, productId) {
+            return await ProductRepository.delete(productId)
+        },
+
     },
 
     getters: {
