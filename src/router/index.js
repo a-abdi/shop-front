@@ -8,6 +8,7 @@ import UserLogin from "../views/User/Login.vue"
 import AdminLogin from "../views/Admin/Login.vue"
 import AdminDashboard from "../views/Admin/Dashboard/Index.vue"
 import AdminProducts from "../views/Admin/Dashboard/Products/Index.vue"
+import AdminProductsHome from "../views/Admin/Dashboard/Products/Home.vue"
 import AdminUsers from "../views/Admin/Dashboard/Users.vue"
 import AdminCarts from "../views/Admin/Dashboard/Carts.vue"
 import AdminCategories from "../views/Admin/Dashboard/Categories.vue"
@@ -93,9 +94,14 @@ const routes = [
         component: AdminProducts,
         children: [
           {
+            path: '',
+            component: AdminProductsHome
+          },
+
+          {
             path: "add",
             component: AdminAddProduct
-          }
+          },
         ]
       },
 

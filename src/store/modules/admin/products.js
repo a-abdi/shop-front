@@ -4,7 +4,7 @@ export default {
     namespaced: true,
 
     state: () => ({
-
+        
     }),
 
     mutations: {
@@ -13,7 +13,7 @@ export default {
 
     actions: {
         async getProducts ({ commit }) {
-            console.log( await ProductRepository.index())
+            commit('loadProducts', await ProductRepository.index(), { root: true })
         },
 
         async addProduct({commit}, productData) {

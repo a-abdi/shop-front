@@ -23,6 +23,6 @@ export default {
 
 <style>
     .link {
-        @apply px-6 py-3 cursor-pointer hover:text-gray-900 hover:bg-green-50 tracking-wider;
+        @apply px-6 py-3 cursor-pointer hover:text-gray-900 hover:bg-green-100 tracking-wider;
     }
 </style>
