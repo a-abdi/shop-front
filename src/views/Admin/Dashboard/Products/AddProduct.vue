@@ -21,7 +21,7 @@
                         <option value="" disabled selected>Category</option>
                         <option v-for="category in categories.data" :key="category.id" :value="category.name">{{ category.name }}</option>
                     </select>
-                    <button :disabled="form.loading" :class="{'cursor-wait': form.loading}" type="submit" class="w-full md:w-1/4 my-2 md:my-0 py-1 px-2 rounded-md text-gray-700 bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-700 hover:bg-blue-300 focus:bg-blue-400">
+                    <button :disabled="form.loading" :class="{'cursor-wait': form.loading}" type="submit" class="w-full md:w-1/4 my-2 md:my-0 py-1 px-2 rounded-md text-white bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-700 hover:bg-blue-600 focus:bg-blue-700">
                         Add Product
                     </button>
                 </div> 

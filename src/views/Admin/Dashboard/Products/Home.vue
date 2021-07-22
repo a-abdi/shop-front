@@ -22,7 +22,7 @@
                     <td class="td"> <Currency :money="product.price" /> </td>
                     <td class="td"> <Currency :money="product.discount" /> </td>
                     <td class="td"> {{ product.quantity }} </td>
-                    <td class="td"> <button class="base-btn bg-blue-500 hover:bg-blue-600 focus:bg-blue-700"> Details </button> </td>
+                    <td class="td"> <router-link :to="`/admin/dashboard/products/${product.id}`"  class="base-btn bg-blue-500 hover:bg-blue-600 focus:bg-blue-700"> Details </router-link > </td>
                     <td class="td"> <button class="base-btn bg-yellow-500 hover:bg-yellow-600 focus:bg-yellow-700"> Edit </button> </td>
                     <td class="td"> <button class="base-btn bg-red-500 hover:bg-red-600 focus:bg-red-700"> Delete </button> </td>
                 </tr>
@@ -47,7 +47,7 @@ export default {
         store.dispatch('adminProducts/getProducts')
 
         return {
-            products: computed ( () => store.state.products ),
+            products: computed ( () => store.getters['adminProducts/products'] ),
         }
     }
 }

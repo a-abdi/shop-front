@@ -4,16 +4,29 @@ export default {
     namespaced: true,
 
     state: () => ({
-        
+        products: null,
+        product:  null,
     }),
 
     mutations: {
-       
+       setProducts(state, response) {
+           const { data } = response
+           state.products = data
+       },
+
+       setProduct(state, response) {
+        const { data } = response
+        state.product = data
+       }
     },
 
     actions: {
         async getProducts ({ commit }) {
-            commit('loadProducts', await ProductRepository.index(), { root: true })
+            commit('setProducts', await ProductRepository.index())
+        },
+
+        async getProduct({ commit }, productId) {
+            commit('setProduct', await ProductRepository.show(productId))
         },
 
         async addProduct({commit}, productData) {
@@ -22,6 +35,12 @@ export default {
     },
 
     getters: {
-       
+       products (state) {
+           return state.products
+       },
+
+       product (state) {
+        return state.product
+    }
     }
 }
