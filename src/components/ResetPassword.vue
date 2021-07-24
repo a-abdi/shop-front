@@ -19,6 +19,9 @@
             <div class="w-full px-4 mb-4">
                  <slot name="btn"></slot>
             </div>
+              <div class="w-full px-4 mb-4">
+                 <slot name="message"></slot>
+            </div>
         </div>
     </div>
 </template>

@@ -26,6 +26,11 @@ export default {
             return await AuthRepository.forgotPassword(email)
         },
 
+        async resetPassword ({}, resetPasswordData) {
+            return await AuthRepository.resetPassword(resetPasswordData)
+        },
+
+
         signOut({ commit }) {
             commit('clearData', 'admin', { root: true })
             location.reload()
