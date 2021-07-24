@@ -22,6 +22,10 @@ export default {
             commit('setAdminData', admin.data)
         },
 
+        async forgotPassword ({}, email) {
+            return await AuthRepository.forgotPassword(email)
+        },
+
         signOut({ commit }) {
             commit('clearData', 'admin', { root: true })
             location.reload()

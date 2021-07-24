@@ -14,6 +14,8 @@ import AdminCarts from "../views/Admin/Dashboard/Carts.vue"
 import AdminCategories from "../views/Admin/Dashboard/Categories.vue"
 import AdminAddProduct from "../views/Admin/Dashboard/Products/Create.vue"
 import AdminShowProduct from "../views/Admin/Dashboard/Products/Show.vue"
+import AdminResetPassword from "../views/Admin/ResetPassword.vue"
+import AdminForgotPassword from "../views/Admin/ForgotPassword.vue"
 
 // middlewares
 import AuthUser from "../middlewares/beforeEachAuthUser"
@@ -74,6 +76,31 @@ const routes = [
     },
     beforeEnter: (to, from, next) => AdminGuest(next)
   },
+
+  {
+    path: "/admin/reset-password/:token",
+    name: "AdminResetPassword",
+    component: AdminResetPassword,
+    meta: {
+      layout: "AppLayoutAdmin",
+      rrequiresAuthUser: false,
+      requiresAuthAdmin: false,
+    },
+    beforeEnter: (to, from, next) => AdminGuest(next)
+  },
+
+  {
+    path: "/admin/forgot-password",
+    name: "AdminForgotPassword",
+    component: AdminForgotPassword,
+    meta: {
+      layout: "AppLayoutAdmin",
+      rrequiresAuthUser: false,
+      requiresAuthAdmin: false,
+    },
+    beforeEnter: (to, from, next) => AdminGuest(next)
+  },
+  
   
   {
     path: "/admin/dashboard",
