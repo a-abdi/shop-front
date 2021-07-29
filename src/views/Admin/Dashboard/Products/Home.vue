@@ -3,7 +3,7 @@
         <table class="table-auto w-full border-separate border border-green-800">
             <thead>
                 <tr class="">
-                    <th class="tr">Id</th>
+                    <th class="tr">ID</th>
                     <th class="tr">Name</th>
                     <th class="tr">Category</th>
                     <th class="tr">Price</th>

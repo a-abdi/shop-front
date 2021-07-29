@@ -1,8 +1,8 @@
 <template>
     <div class="w-full">
         <form @submit.prevent="recoveryPassword">
-            <div class="w-11/12 sm:w-1/2 lg:w-1/3 mt-4 sm:mt-8 md:mt-16 lg:mt-24 mx-auto border border-gray-200 rounded">
-                <div class="border-b border-gray-200 p-2">
+            <div class="w-11/12 sm:w-1/2 lg:w-1/3 mt-4 sm:mt-8 md:mt-16 lg:mt-24 mx-auto border-2 border-gray-200 rounded">
+                <div class="border-b border-gray-200 bg-gray-100 p-2">
                     Admin Forgot Password
                 </div>
                 <div class="text-sm text-gray-600 mb-0.5 mt-4 px-4">

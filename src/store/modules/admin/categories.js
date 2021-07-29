@@ -21,12 +21,16 @@ export default {
     },
 
     actions: {
-        async getCayegories ({commit}) {
+        async getCategories ({commit}) {
             commit('setCategories', await CategoryRepository.index())
         },
 
-        async getCayegory ({commit}, CategoryId) {
-            commit('setCategory', await CategoryRepository.show(CategoryId))
+        async getCategory ({commit}, categoryId) {
+            commit('setCategory', await CategoryRepository.show(categoryId))
+        },
+
+        async createCategory ({}, categoryData) {
+            return await CategoryRepository.create(categoryData)
         },
     },
 

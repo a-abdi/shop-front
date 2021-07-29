@@ -5,17 +5,25 @@ import Product from "../views/Product.vue"
 import NotFound from "../views/NotFound.vue"
 import UserRegister from "../views/User/Register.vue"
 import UserLogin from "../views/User/Login.vue"
+
 import AdminLogin from "../views/Admin/Login.vue"
-import AdminDashboard from "../views/Admin/Dashboard/Index.vue"
-import AdminProducts from "../views/Admin/Dashboard/Products/Index.vue"
-import AdminProductsHome from "../views/Admin/Dashboard/Products/Home.vue"
-import AdminUsers from "../views/Admin/Dashboard/Users.vue"
-import AdminCarts from "../views/Admin/Dashboard/Carts.vue"
-import AdminCategories from "../views/Admin/Dashboard/Categories.vue"
-import AdminAddProduct from "../views/Admin/Dashboard/Products/Create.vue"
-import AdminShowProduct from "../views/Admin/Dashboard/Products/Show.vue"
 import AdminResetPassword from "../views/Admin/ResetPassword.vue"
 import AdminForgotPassword from "../views/Admin/ForgotPassword.vue"
+
+import AdminDashboard from "../views/Admin/Dashboard/Index.vue"
+
+import AdminProducts from "../views/Admin/Dashboard/Products/Index.vue"
+import AdminHomeProducts from "../views/Admin/Dashboard/Products/Home.vue"
+import AdminShowProduct from "../views/Admin/Dashboard/Products/Show.vue"
+import AdminCreateProduct from "../views/Admin/Dashboard/Products/Create.vue"
+
+import AdminCategories from "../views/Admin/Dashboard/Categories/Index.vue"
+import AdminHomeCategories from "../views/Admin/Dashboard/Categories/Home.vue"
+import AdminShowCategory from "../views/Admin/Dashboard/Categories/Show.vue"
+import AdminCreateCategory from "../views/Admin/Dashboard/Categories/Create.vue"
+
+import AdminUsers from "../views/Admin/Dashboard/Users.vue"
+import AdminCarts from "../views/Admin/Dashboard/Carts.vue"
 
 // middlewares
 import AuthUser from "../middlewares/beforeEachAuthUser"
@@ -122,13 +130,13 @@ const routes = [
         component: AdminProducts,
         children: [
           {
-            path: '',
-            component: AdminProductsHome
+            path: "",
+            component: AdminHomeProducts
           },
 
           {
             path: "create",
-            component: AdminAddProduct
+            component: AdminCreateProduct
           },
 
           {
@@ -139,13 +147,29 @@ const routes = [
       },
 
       {
-        path: "carts",
-        component: AdminCarts
+        path: "categories",
+        component: AdminCategories,
+        children: [
+          {
+            path: "",
+            component: AdminHomeCategories
+          },
+
+          {
+            path: "create",
+            component: AdminCreateCategory
+          },
+
+          {
+            path: ":categoryId(\\d+)",
+            component: AdminShowCategory
+          },
+        ]
       },
 
       {
-        path: "categories",
-        component: AdminCategories
+        path: "carts",
+        component: AdminCarts
       },
     ]
   },
