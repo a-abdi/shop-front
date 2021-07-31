@@ -5,6 +5,8 @@ import Product from "../views/Product.vue"
 import NotFound from "../views/NotFound.vue"
 import UserRegister from "../views/User/Register.vue"
 import UserLogin from "../views/User/Auth/Login.vue"
+import UserForgotPassword from "../views/User/Auth/ForgotPassword.vue"
+import UserResetPassword from "../views/User/Auth/ResetPassword.vue"
 
 import AdminLogin from "../views/Admin/Auth/Login.vue"
 import AdminResetPassword from "../views/Admin/Auth/ResetPassword.vue"
@@ -62,6 +64,30 @@ const routes = [
     path: "/login",
     name: "Login",
     component: UserLogin,
+    meta: {
+      layout: "AppLayoutUser",
+      requiresAuthUser: false,
+      requiresAuthAdmin: false,
+    },
+    beforeEnter: (to, from, next) => UserGuest(next)
+  },
+
+  {
+    path: "/forgot-password",
+    name: "ForgotPassword",
+    component: UserForgotPassword,
+    meta: {
+      layout: "AppLayoutUser",
+      requiresAuthUser: false,
+      requiresAuthAdmin: false,
+    },
+    beforeEnter: (to, from, next) => UserGuest(next)
+  },
+
+  {
+    path: "/reset-password",
+    name: "ResetPassword",
+    component: UserResetPassword,
     meta: {
       layout: "AppLayoutUser",
       requiresAuthUser: false,
