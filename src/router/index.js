@@ -4,11 +4,11 @@ import Cart from "../views/User/Cart.vue"
 import Product from "../views/Product.vue"
 import NotFound from "../views/NotFound.vue"
 import UserRegister from "../views/User/Register.vue"
-import UserLogin from "../views/User/Login.vue"
+import UserLogin from "../views/User/Auth/Login.vue"
 
-import AdminLogin from "../views/Admin/Login.vue"
-import AdminResetPassword from "../views/Admin/ResetPassword.vue"
-import AdminForgotPassword from "../views/Admin/ForgotPassword.vue"
+import AdminLogin from "../views/Admin/Auth/Login.vue"
+import AdminResetPassword from "../views/Admin/Auth/ResetPassword.vue"
+import AdminForgotPassword from "../views/Admin/Auth/ForgotPassword.vue"
 
 import AdminDashboard from "../views/Admin/Dashboard/Index.vue"
 

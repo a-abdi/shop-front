@@ -26,8 +26,8 @@
 <script>
 import { reactive, ref } from 'vue'
 import { useStore } from 'vuex'
-import ErrorMessage from '../../components/ErrorMessage.vue'
-import SuccessMessage from '../../components/SuccessMessage.vue'
+import ErrorMessage from '../../../components/ErrorMessage.vue'
+import SuccessMessage from '../../../components/SuccessMessage.vue'
 
 export default {
     components: {

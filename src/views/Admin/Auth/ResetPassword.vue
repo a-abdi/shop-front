@@ -30,9 +30,9 @@
 import { reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
-import ResetPassword from '../../components/ResetPassword.vue'
-import ErrorMessage from '../../components/ErrorMessage.vue'
-import SuccessMessage from '../../components/SuccessMessage.vue'
+import ResetPassword from '../../../components/ResetPassword.vue'
+import ErrorMessage from '../../../components/ErrorMessage.vue'
+import SuccessMessage from '../../../components/SuccessMessage.vue'
 
 export default {
     components: {
