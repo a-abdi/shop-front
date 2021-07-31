@@ -6,15 +6,15 @@
             </template>
 
             <template #password> 
-                    <input v-model="form.password" id="password" type="password" class="input">
+                    <input v-model="form.password" id="password" type="password" class="form-input">
             </template>
 
             <template #confirm> 
-                    <input v-model="form.password_confirmation" id="confirm_password" type="password" class="input mb-6">
+                    <input v-model="form.password_confirmation" id="confirm_password" type="password" class="form-input mb-6">
             </template>
 
             <template #btn> 
-                <button :disabled="form.loading" :class="{'cursor-wait': form.loading}" type="submit" class="btn">
+                <button :disabled="form.loading" :class="{'cursor-wait': form.loading}" type="submit" class="btn-blue">
                     Reset Password
                 </button>    
             </template>
@@ -78,14 +78,4 @@ export default {
     }
 }
 </script>
-
-<style>
-    .input {
-        @apply w-full px-2 py-1 border rounded-md shadow-sm outline-none focus:ring-2 focus:ring-blue-200;
-    }
-
-    .btn {
-        @apply py-1 text-white tracking-wide bg-blue-500 rounded-md focus:outline-none hover:bg-blue-600 focus:bg-blue-700 focus:ring-2 focus:ring-blue-800;
-    }
-</style>
 

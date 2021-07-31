@@ -61,7 +61,7 @@ export default {
             success: null,
         })
 
-        store.dispatch('adminCategories/getCayegories')
+        store.dispatch('adminCategories/getCategories')
 
         const onFileChange = (e) => {
             const file = e.target.files[0]

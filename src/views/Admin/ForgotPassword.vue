@@ -1,25 +1,25 @@
 <template>
-    <div class="w-full">
-        <form @submit.prevent="recoveryPassword">
-            <div class="w-11/12 sm:w-1/2 lg:w-1/3 mt-4 sm:mt-8 md:mt-16 lg:mt-24 mx-auto border-2 border-gray-200 rounded">
-                <div class="border-b border-gray-200 bg-gray-100 p-2">
+    <div class="form-base">
+        <div class="form-design">
+            <form @submit.prevent="recoveryPassword">
+                <div class="form-title">
                     Admin Forgot Password
                 </div>
-                <div class="text-sm text-gray-600 mb-0.5 mt-4 px-4">
-                    <label for="email">Email</label>
+                <div class="form-label">
+                    <label for="email">email</label>
                 </div>
                  <div class="px-2 mb-4">
-                    <input v-model="form.email" id="email" type="email" class="w-full px-2 py-1 border rounded-md shadow-sm outline-none focus:ring-2 focus:ring-blue-200">
+                    <input v-model="form.email" id="email" type="email" class="form-input">
                 </div>
                 <div class="p-2 mb-4">
-                     <button :disabled="form.loading" :class="{'cursor-wait': form.loading}" type="submit" class="py-1 px-2 text-white tracking-wide bg-blue-500 rounded-md focus:outline-none hover:bg-blue-600 focus:bg-blue-700 focus:ring-2 focus:ring-blue-800">
+                     <button :disabled="form.loading" :class="{'cursor-wait': form.loading}" type="submit" class="btn-blue">
                         Recovery Password
                     </button>    
                 </div>
                 <ErrorMessage class="m-2" :error="form.error" />
                 <SuccessMessage class="m-2" :success="form.success" />
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </template>
 

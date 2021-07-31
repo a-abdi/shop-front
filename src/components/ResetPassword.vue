@@ -1,7 +1,7 @@
 <template>
-      <div class="h-full w-full mt-4 sm:mt-8 md:mt-16 lg:mt-24">
-        <div class="w-11/12 sm:w-1/2 lg:w-1/3 mx-auto border-2 border-gray-200 rounded-md">
-            <div class="text-base px-4 py-2 text-gray-600 bg-gray-100 mb-6 border-b border-gray-200">
+      <div class="form-base">
+        <div class="form-design">
+            <div class="form-title">
                 <slot name="title"></slot>
             </div>
             <div class="text-sm text-gray-600 mb-1 px-4">
