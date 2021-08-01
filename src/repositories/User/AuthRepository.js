@@ -7,5 +7,13 @@ export default {
 
     login (userData) {
         return Client.post('login', userData)
+    },
+
+    forgotPassword (email) {
+        return Client.post('/forgot-password', email)
+    },
+
+    resetPassword (resetPasswordData) {
+        return Client.post('/reset-password', resetPasswordData)
     }
 };

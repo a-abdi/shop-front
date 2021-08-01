@@ -25,6 +25,14 @@ export default {
             const user = await AuthRepository.login(userData)
             commit('setUserData', user.data)
         },
+
+        async forgotPassword ({}, email) {
+            return await AuthRepository.forgotPassword(email)
+        },
+
+        async resetPassword ({}, resetPasswordData) {
+            return await AuthRepository.resetPassword(resetPasswordData)
+        },
           
         signOut({ commit }) {
             commit('clearData', 'user', { root: true })

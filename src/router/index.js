@@ -75,7 +75,7 @@ const routeOptions = [
   },
   
   {
-    path: "/reset-password",
+    path: "/reset-password/:token",
     name: "User/Auth/ResetPassword",
     meta: {
       layout: "AppLayoutUser",
@@ -130,7 +130,6 @@ const routeOptions = [
     },
     beforeEnter: (to, from, next) => AdminGuest(next)
   },
-  
   
   {
     path: "/admin/dashboard",
