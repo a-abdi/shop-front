@@ -1,5 +1,8 @@
 <template>
-    <LoginForm :storeLogin="'userAuth/login'" :forgotPasswordLink="'/forgot-password'">
+    <LoginForm 
+    :storeLogin="'userAuth/login'" 
+    :forgotPasswordLink="'/forgot-password'" 
+    :routerPushName="'Home'">
         Login
     </LoginForm>
 </template>

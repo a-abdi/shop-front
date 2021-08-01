@@ -51,6 +51,7 @@ export default {
     props: {
         forgotPasswordLink: String,
         storeLogin: String,
+        routerPushName: String,
     },
 
     setup (props) {
@@ -69,10 +70,11 @@ export default {
             try {
                 await store.dispatch(props.storeLogin, form)
                 router.push({
-                    name: 'AdminDashboard'
+                    name: props.routerPushName
                 })
                 
             } catch (error) {
+                console.log(error)
                 form.error = error.response.data
             }
 

@@ -1,5 +1,8 @@
 <template>
-    <LoginForm :storeLogin="'adminAuth/login'" :forgotPasswordLink="'/admin/forgot-password'">
+    <LoginForm 
+    :storeLogin="'adminAuth/login'" 
+    :forgotPasswordLink="'/admin/forgot-password'"
+    :routerPushName="'Admin/Dashboard/Index'">
         Admin Login
     </LoginForm>
 </template>
