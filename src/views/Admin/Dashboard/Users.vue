@@ -1,6 +1,6 @@
 <template>
     <div>
-        {{ doubleCount }}ff
+        User
     </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
         const store = useStore()
 
         return {
-            doubleCount: computed( () => store.getters['a/doubleCount'])
+            doubleCount: computed( () => store.getters[''])
         }
     }
 }

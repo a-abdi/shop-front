@@ -43,7 +43,6 @@ export default {
             totalPrice: computed ( () => parseInt(props.price)  - parseInt(props.discount)  ),
             percentage: computed ( () => `${(Math.round((props.discount / props.price) * 1000) / 10)}%` ),
             formatPrice,
-
         }
     },
 }
