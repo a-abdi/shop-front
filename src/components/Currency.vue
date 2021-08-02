@@ -1,6 +1,6 @@
 <template>
     <div>
-        {{ currency }}
+        ${{ currency }}
     </div>
 </template>
 

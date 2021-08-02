@@ -25,12 +25,8 @@
                         Add Product
                     </button>
                 </div> 
-                <div v-if="form.error" class="text-center py-1 px-2 rounded-md text-white bg-red-600">
-                    {{ form.error.message }}
-                </div>
-                 <div v-if="form.success" class="text-center py-1 px-2 rounded-md text-white bg-green-600">
-                    {{ form.success.data.message }}
-                </div>
+                <ErrorMessage v-if="form.error" :error="form.error" />
+                <SuccessMessage v-if="form.success" :success="form.success" />
                 <div class="mt-6 mb-3 w-full">
                     <textarea v-model="form.description" placeholder="description" class="p-2 text-gray-600 resize-y border rounded-md w-full h-16 sm:h-24 md:h-32 xl:h-40 focus:outline-none focus:ring-2 focus:ring-blue-200"></textarea>
                 </div>
@@ -42,11 +38,21 @@
 <script>
 import { computed, ref, reactive } from 'vue'
 import { useStore } from 'vuex'
+import ErrorMessage from '../../../../components/ErrorMessage.vue'
+import SuccessMessage from '../../../../components/SuccessMessage.vue'
 
 export default {
+    name: "ProductsCreate",
+
+    components: {
+        ErrorMessage,
+        SuccessMessage,
+    },
+
     setup () {
         const fileInput = ref(null)
         const imageUrl = ref(null)
+        const response = ref(null)
         const store = useStore()
         const form = reactive({
             name: '',
@@ -84,8 +90,8 @@ export default {
             formData.append('description', form.description)
 
             try {
-               form.success = await store.dispatch('adminProducts/createProduct', formData)
-
+                response.value = await store.dispatch('adminProducts/createProduct', formData)
+                form.success = response.value.data
             } catch (error) {
                 form.error = error.response.data
             }

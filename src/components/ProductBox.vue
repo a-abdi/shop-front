@@ -21,7 +21,7 @@
 </template>
 
 <script>
-    import TotalPrice from '../components/TotalPrice.vue'
+    import TotalPrice from './TotalPrice.vue'
 
     export default {
         components:{
@@ -30,12 +30,5 @@
         props: {
             product: Object
         },
-
-        setup(props) {
-
-            return {
-
-            }
-        }
     }
 </script>

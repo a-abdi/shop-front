@@ -1,22 +1,20 @@
 <template>
-    <div class="flex w-sm sm:w-full overflow-x-auto">
+    <div class="flex my-4">
         <div class="w-3/4" v-if="cart">
-            <div v-for="product in cart.data" :key="product.id" class="flex p-.5 sm:p-1 md:p-2 text-xs md:text-sm">
+            <div v-for="product in cart.data" :key="product.id" class="flex mb-2 md:mb-4 ml-1 md:ml-2 text-xs md:text-sm">
                 <div class="w-1/3">
                     <img :src="product.image_src" alt="" class="w-auto h-auto min-w-full max-w-40 max-h-24 sm:max-h-32 md:max-h-40 lg:max-h-48 xl:max-h-56 max-w-full">
                 </div>
-                <div class="w-2/3 p-2 text-center ">
-                    <div class="">
-                        <p class="text-gray-600 text-sm md:text-base">
-                            {{ product.name}}
-                        </p>
+                <div class="w-2/3 px-8 py-2">
+                    <div class="text-purple-600 text-sm md:text-base mb-1 md:mb-2">
+                        {{ product.name}}
                     </div>
-                    <TotalPrice :price="product.price" :discount="product.discount"  class="p-2 my-2 text-left "/>
+                    <TotalPrice :price="product.price" :discount="product.discount"  class=""/>
                 </div>
             </div>
         </div>
-        <div class="w-1/4 float-right">
-            <Checkout class="border border-gray-200 rounded-md p-0.5 md:p-1 xl:p-2 m-0.5 sm:m-1 md:m-2 lg:m-3 xl:m-4 2xl:m-6" />
+        <div class="w-1/4">
+            <Checkout class="mx-0.5 sm:mx-1 md:mx-2 lg:mx-3 xl:mx-4 2xl:mx-6" />
         </div>
     </div>
 </template>

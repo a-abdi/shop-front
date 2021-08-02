@@ -7,7 +7,7 @@
 <script>
 export default {
     props: {
-        error: String
+        error: Object
     }
 }
 </script>

@@ -11,7 +11,7 @@
 
 <script>
 
-import DashboardIndex from '../../../../components/AdminDashboardIndex.vue'
+import DashboardIndex from '../../../../components/AdminDashboardContentIndex.vue'
 
 export default {
     components: {

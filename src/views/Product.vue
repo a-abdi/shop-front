@@ -1,8 +1,8 @@
 <template>
-    <div class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xls w-full px-2">
+    <div class="text-xs md:text-sm 2xl:text-lg w-full px-2 my-2 md:my-4">
         <Suspense>
             <template #default>
-                <InfoProduct />
+                <DetalsProduct />
             </template>
             <template #fallback>
                 <Loading />
@@ -12,20 +12,13 @@
 </template>
  
 <script>
-    import InfoProduct from '../components/InfoProduct.vue'
+    import DetalsProduct from '../components/DetalsProduct.vue'
     import Loading from '../components/Loading.vue'
 
     export default {
         components: {
-            InfoProduct,
+            DetalsProduct,
             Loading
         },
-
-        setup () {
-            
-            return {
-
-            }
-        }
     }
 </script>

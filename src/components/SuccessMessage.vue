@@ -7,7 +7,7 @@
 <script>
 export default {
     props: {
-        success: String
+        success: Object
     }
 }
 </script>
