@@ -13,7 +13,7 @@ export default {
         return Client.post(`${resource}`, payload);
     },
     edit (payload, productId) {
-        return Client.put(`${resource}/${productId}`, payload);
+        return Client.post(`${resource}/${productId}`, payload);
     },
     delete (productId) {
         return Client.delete(`${resource}/${productId}`)

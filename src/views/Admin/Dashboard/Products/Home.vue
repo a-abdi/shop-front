@@ -22,8 +22,8 @@
                     <td class="table-td"> <Currency :money="product.price" /> </td>
                     <td class="table-td"> <Currency :money="product.discount" /> </td>
                     <td class="table-td"> {{ product.quantity }} </td>
-                    <td class="table-td"> <router-link :to="`/admin/dashboard/products/${product.id}`"  class="btn-blue py-2.5"> Details </router-link > </td>
-                    <td class="table-td"> <button class="btn-yellow"> Edit </button> </td>
+                    <td class="table-td"> <router-link :to="`/admin/dashboard/products/${product.id}`"  class="btn-blue"> Details </router-link > </td>
+                    <td class="table-td"> <router-link :to="`/admin/dashboard/products/${product.id}/edit`" class="btn-yellow"> Edit </router-link> </td>
                     <td class="table-td"> <button @click="deleteProduct(product.id)" class="btn-red"> Delete </button> </td>
                 </tr>
             </tbody>

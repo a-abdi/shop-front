@@ -164,6 +164,12 @@ const routeOptions = [
           },
 
           {
+            path: ":productId(\\d+)/edit",
+            name: "Admin/Dashboard/Products/Edit",
+            component: () => import("../views/Admin/Dashboard/Products/Edit.vue"),
+          },
+
+          {
             path: ":productId(\\d+)",
             name: "Admin/Dashboard/Products/Show",
             component: () => import("../views/Admin/Dashboard/Products/Show.vue"),
