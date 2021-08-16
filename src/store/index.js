@@ -5,12 +5,14 @@ import UserAuthModule from "./modules/user/auth"
 import AdminProductsModule from "./modules/admin/products"
 import AdminAuthModule from "./modules/admin/auth"
 import AdminCategoriesModule from "./modules/admin/categories"
+import AdminUsersModule from "./modules/admin/users"
 
 export default createStore({
     modules: {
       adminAuth: AdminAuthModule,
       adminCategories: AdminCategoriesModule,
       adminProducts: AdminProductsModule,
+      adminUsers: AdminUsersModule,
       userCart: UserCartModule,
       userAuth: UserAuthModule,
     },

@@ -59,7 +59,6 @@ export default {
         const response = ref(null)
         const store = useStore()
         const { defaultFormData } = toRefs(props)
-        console.log(defaultFormData.value)
         const form = reactive({
             name:        defaultFormData.value.name,
             price:       defaultFormData.value.price,

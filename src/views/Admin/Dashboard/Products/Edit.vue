@@ -1,5 +1,5 @@
 <template>
-    <div v-if="product">{{ product.data }}
+    <div v-if="product">
         <ProductForm 
         :defaultFormData="product.data"
         :productCategory="product.data.category[0].name"

@@ -40,7 +40,6 @@ export default {
         async deleteProduct({}, productId) {
             return await ProductRepository.delete(productId)
         },
-
     },
 
     getters: {

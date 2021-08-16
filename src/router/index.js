@@ -142,8 +142,23 @@ const routeOptions = [
     children: [
       {
         path: "users",
-        name: "Admin/Dashboard/Users",
-        component: () => import("../views/Admin/Dashboard/Users.vue"),
+        name: "Admin/Dashboard/Users/Index",
+        component: () => import("../views/Admin/Dashboard/Users/Index.vue"),
+         
+        children: [
+          {
+            path: "",
+            name: "Admin/Dashboard/Users/Home",
+            component: () => import("../views/Admin/Dashboard/Users/Home.vue"),
+          },
+
+          {
+            path: ":productId(\\d+)",
+            name: "Admin/Dashboard/Users/Show",
+            component: () => import("../views/Admin/Dashboard/Users/Show.vue"),
+          },
+        ]
+        
       },
 
       {
