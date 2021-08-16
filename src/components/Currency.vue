@@ -13,10 +13,8 @@ export default {
     },
 
     setup (props) {
-        const money = (props.money/1).toFixed(2).replace('.', ',')
-       
         return {
-           currency: computed( () => money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
+           currency: computed( () => ((props.money/1).toFixed(2).replace('.', ',')).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")),
         }
     },
 }

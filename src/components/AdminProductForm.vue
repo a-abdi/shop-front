@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { computed, ref, reactive } from 'vue'
+import { computed, ref, reactive, toRefs } from 'vue'
 import { useStore } from 'vuex'
 import ErrorMessage from './ErrorMessage.vue'
 import SuccessMessage from './SuccessMessage.vue'
@@ -47,7 +47,7 @@ export default {
         SuccessMessage,
     },
 
-    props:{
+    props: {
         defaultFormData: Object,
         productCategory: String,
         storeSendProduct: String,
@@ -58,20 +58,23 @@ export default {
         const imageUrl = ref(null)
         const response = ref(null)
         const store = useStore()
+        const { defaultFormData } = toRefs(props)
+        console.log(defaultFormData.value)
         const form = reactive({
-            name:        props.defaultFormData.name,
-            price:       props.defaultFormData.price,
-            discount:    props.defaultFormData.discount,
-            quantity:    props.defaultFormData.quantity,
-            description: props.defaultFormData.description,
+            name:        defaultFormData.value.name,
+            price:       defaultFormData.value.price,
+            discount:    defaultFormData.value.discount,
+            quantity:    defaultFormData.value.quantity,
+            description: defaultFormData.value.description,
             category:    props.productCategory,
-            image: '',
-            loading: false,
-            error: null,
-            success: null,
+            image:       '',
+            loading:     false,
+            error:       null,
+            success:     null,
         })
         
-        imageUrl.value = props.defaultFormData.image_src
+        imageUrl.value = defaultFormData.value.image_src
+
 
         store.dispatch('adminCategories/getCategories')
 
@@ -96,13 +99,12 @@ export default {
             formData.append('description', form.description)
 
             const product = {
-                id: props.defaultFormData.id,
+                id: defaultFormData.value.id,
                 data: formData
             }
             try {
                 response.value = await store.dispatch(props.storeSendProduct, product)
                 form.success = response.value.data
-                store.dispatch('adminProducts/getProducts')
             } catch (error) {
                 form.error = error.response.data
             }
