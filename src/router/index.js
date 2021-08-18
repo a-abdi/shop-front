@@ -153,7 +153,7 @@ const routeOptions = [
           },
 
           {
-            path: ":productId(\\d+)",
+            path: ":userId(\\d+)",
             name: "Admin/Dashboard/Users/Show",
             component: () => import("../views/Admin/Dashboard/Users/Show.vue"),
           },
@@ -210,9 +210,9 @@ const routeOptions = [
           },
 
           {
-            path: ":categoryId(\\d+)",
-            name: "Admin/Dashboard/Categories/Show",
-            component: () => import("../views/Admin/Dashboard/Categories/Show.vue"),
+            path: ":categoryId(\\d+)/edit",
+            name: "Admin/Dashboard/Categories/Edit",
+            component: () => import("../views/Admin/Dashboard/Categories/Edit.vue"),
           },
         ]
       },

@@ -34,7 +34,7 @@ export default {
         },
 
         async editProduct({}, product) {
-            return await ProductRepository.edit(product.data, product.id)
+            return await ProductRepository.update(product.data, product.id)
         },
 
         async deleteProduct({}, productId) {

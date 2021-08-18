@@ -12,7 +12,7 @@ export default {
     create (payload) {
         return Client.post(`${resource}`, payload);
     },
-    edit (payload, productId) {
+    update (payload, productId) {
         return Client.post(`${resource}/${productId}`, payload);
     },
     delete (productId) {

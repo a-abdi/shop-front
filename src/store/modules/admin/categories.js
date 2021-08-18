@@ -32,6 +32,10 @@ export default {
         async createCategory ({}, categoryData) {
             return await CategoryRepository.create(categoryData)
         },
+
+        async editCategory({}, category) {
+            return await CategoryRepository.update(category.data, category.id)
+        },
     },
 
     getters: {
