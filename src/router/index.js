@@ -95,6 +95,26 @@ const routeOptions = [
     }
   },
 
+  {
+    path: "/profile",
+    name: "User/Profile",
+    meta: {
+      layout: "AppLayoutUser",
+      requiresAuthUser: true,
+      requiresAuthAdmin: false,
+    }
+  },
+
+  {
+    path: "/settings",
+    name: "User/Settings",
+    meta: {
+      layout: "AppLayoutUser",
+      requiresAuthUser: true,
+      requiresAuthAdmin: false,
+    }
+  },
+
   //*---------------------------------------------------------------------------------------
   // admin route
   //*---------------------------------------------------------------------------------------

@@ -54,7 +54,14 @@
                         <div v-click-away="closeUserMenu">
                             <button @click="userMenu = !userMenu" type="button" class="bg-gray-50 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-300 focus:ring-gray-200" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full" src="../../assets/ali.jpg"/>
+                                <div v-if="user.data.information">
+                                    <img class="h-8 w-8 rounded-full" :src="user.data.information.image_src">
+                                </div>
+                                <div v-else>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                    </svg>
+                                </div>
                             </button>
                         </div>
                         <!--
@@ -69,8 +76,8 @@
                         -->
                         <div v-show="userMenu" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-50 ring-1 ring-gray-300 ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                             <!-- Active: "bg-gray-100", Not Active: "" -->
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-600" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-600" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+                            <router-link to="/profile" class="block px-4 py-2 text-sm text-gray-600" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</router-link>
+                            <router-link to="/settings" class="block px-4 py-2 text-sm text-gray-600" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</router-link>
                             <button @click="userSignOut" class="text-left w-full focus:outline-none block px-4 py-2 text-sm text-gray-600" role="menuitem" tabindex="-1" id="user-menu-item-2">
                                 Sign out
                             </button>
@@ -108,6 +115,7 @@ export default {
 
         return {
             cartCount: computed(() => store.getters['userCart/cartCount']),
+            user: computed(() => store.getters['userAuth/user']),
             userSignOut,
             closeUserMenu,
             userMenu,

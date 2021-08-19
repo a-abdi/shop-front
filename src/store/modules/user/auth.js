@@ -50,5 +50,9 @@ export default {
               return false
             }
         },
+
+        user (state) {
+            return state.user
+        }
     }
 }
