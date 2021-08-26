@@ -16,7 +16,7 @@
                     <input v-model="form.quantity" id="quantity" type="number" min="1" placeholder="quantity" class="w-full md:w-1/4 my-2 md:my-0 form-input">
                 </div>
                 <div class="md:flex md:justify-between my-2 md:my-6">
-                    <input ref="fileInput" @change="onFileChange" type="file" class="w-full md:w-1/4 my-2 md:my-0 text-gray-600 form-input">
+                    <input @change="onFileChange" type="file" class="w-full md:w-1/4 my-2 md:my-0 text-gray-600 form-input">
                     <select v-model="form.category" v-if="categories" name="category" id="category" autofocus="car" aria-placeholder="select category"  class="w-full md:w-1/4 my-2 md:my-0 appearance-none bg-white text-gray-600 form-input">
                         <option value="" disabled selected>Category</option>
                         <option v-for="category in categories.data" :key="category.id" :value="category.name">{{ category.name }}</option>
@@ -54,7 +54,6 @@ export default {
     },
 
     setup (props) {
-        const fileInput = ref(null)
         const imageUrl = ref(null)
         const response = ref(null)
         const store = useStore()
@@ -112,7 +111,6 @@ export default {
 
         return {
             form,
-            fileInput,
             onFileChange,
             imageUrl,
             sendProduct,

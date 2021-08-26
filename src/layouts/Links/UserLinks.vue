@@ -54,7 +54,7 @@
                         <div v-click-away="closeUserMenu">
                             <button @click="userMenu = !userMenu" type="button" class="bg-gray-50 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-300 focus:ring-gray-200" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <div v-if="user.data.information">
+                                <div v-if="user.data.information.image_src">
                                     <img class="h-8 w-8 rounded-full" :src="user.data.information.image_src">
                                 </div>
                                 <div v-else>

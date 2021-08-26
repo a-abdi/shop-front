@@ -14,6 +14,17 @@ export default {
             localStorage.setItem('user', JSON.stringify(userData))
             Client.defaults.headers.common['Authorization'] = `Bearer ${userData.data.token}`
         },
+
+        updateUserInformation(state, userInformation) {
+            state.user.data.information = userInformation.data
+            localStorage.setItem('user', JSON.stringify(state.user))
+        },
+
+        updateUserData(state, userData) {
+            state.user.data.name = userData.data.name
+            state.user.data.email = userData.data.email
+            localStorage.setItem('user', JSON.stringify(state.user))
+        }
     },
 
     actions: { 
@@ -32,6 +43,16 @@ export default {
 
         async resetPassword ({}, resetPasswordData) {
             return await AuthRepository.resetPassword(resetPasswordData)
+        },
+
+        async personalInformation ({commit}, pseronalInformationData) {
+            const userInformation = await  AuthRepository.personalInformation(pseronalInformationData)
+            commit('updateUserInformation', userInformation.data)
+        },
+
+        async userUpdate ({ commit }, userData) {
+            const user = await AuthRepository.userUpdate(userData)
+            commit('updateUserData', user.data)
         },
           
         signOut({ commit }) {

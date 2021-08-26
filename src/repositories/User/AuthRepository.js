@@ -15,5 +15,13 @@ export default {
 
     resetPassword (resetPasswordData) {
         return Client.post('/reset-password', resetPasswordData)
-    }
+    },
+    
+    personalInformation (personalInformationData) {
+        return Client.post('/personal-information', personalInformationData)
+    },
+
+    userUpdate (userData) {
+        return Client.patch('/user', userData)
+    },
 };
