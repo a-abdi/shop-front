@@ -20,7 +20,8 @@
                 () => route.meta,
                 async meta => {
                    try {
-                        const component = await import(`./${meta.layout}.vue`)
+                        const component = await import.meta.globEager(`./${meta.layout}.vue`)
+                        // const component = await import('../layouts/User/AppLayoutUser.vue')
                         layout.value = component?.default || AppLayoutDefault
                     } catch (error) {
                         layout.value = AppLayoutDefault
