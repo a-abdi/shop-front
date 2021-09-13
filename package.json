@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^1.1.393",
+    "@rollup/plugin-dynamic-import-vars": "^1.4.0",
     "@vitejs/plugin-vue": "^1.2.3",
     "@vue/compiler-sfc": "^3.0.5",
     "autoprefixer": "^10.2.6",

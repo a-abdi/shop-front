@@ -46,12 +46,14 @@
 <script>
 import { ref, reactive } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 export default {
     setup () {
         const store = useStore()
         const error = ref(null)
         const response = ref(null)
+        const router = useRouter()
         const form = reactive({
             name: null,
             email: null,
@@ -66,6 +68,12 @@ export default {
             response.value = null
             try {
                 response.value = await store.dispatch('userAuth/register', form)
+                response.value = await store.dispatch('userAuth/login', {
+                    email: form.email, 
+                    password:form.password
+                })
+                
+                router.push({ name: 'Home',  params: { }})
                 form.loading = false
                 
             } catch (e) {

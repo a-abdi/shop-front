@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import AppLayoutDefault from './AppLayoutDefault.vue'
+    import AppLayoutDefault from './AppLayoutList/AppLayoutDefault.vue'
     import { watch, ref } from 'vue'
     import { useRoute } from 'vue-router'
 
@@ -20,7 +20,8 @@
                 () => route.meta,
                 async meta => {
                    try {
-                        const component = await import(`./${meta.layout}.vue`)
+                        const component = await import(`./AppLayoutList/${meta.layout}.vue`)
+                        // const component = await import('../layouts/User/AppLayoutUser.vue')
                         layout.value = component?.default || AppLayoutDefault
                     } catch (error) {
                         layout.value = AppLayoutDefault
