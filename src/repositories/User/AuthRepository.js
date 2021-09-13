@@ -9,6 +9,10 @@ export default {
         return Client.post('login', userData)
     },
 
+    logout() {
+        Client.post('/logout')
+    },
+
     forgotPassword (email) {
         return Client.post('/forgot-password', email)
     },

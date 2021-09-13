@@ -55,7 +55,8 @@ export default {
             commit('updateUserData', user.data)
         },
           
-        signOut({ commit }) {
+         async signOut({ commit }) {
+            await AuthRepository.logout()
             commit('clearData', 'user', { root: true })
             commit('clearData', 'cart', { root: true })
             location.reload()
