@@ -11,9 +11,9 @@
 <script>
 import { computed } from 'vue'
 import { useStore } from 'vuex'
-import UserLinks from './Links/UserLinks.vue'
-import GuestLinks from './Links/GuestLinks.vue'
-import AdminLinks from './Links/AdminLinks.vue'
+import UserLinks from '../Links/UserLinks.vue'
+import GuestLinks from '../Links/GuestLinks.vue'
+import AdminLinks from '../Links/AdminLinks.vue'
 
 export default {
     name: "AppLayoutHome",

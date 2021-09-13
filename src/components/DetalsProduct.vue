@@ -73,7 +73,13 @@
 
             const addToCart = async () => {
                 try {
-                    await store.dispatch('userCart/addToCart', { productId })
+                    const user = computed (() => store.getters['userAuth/user'])
+                    if(!user.value) {
+                        router.push({ name: 'User/Auth/Login',  params: { }} )
+                    }
+                    else {
+                        await store.dispatch('userCart/addToCart', { productId })
+                    }
 
                 } catch (e) {
                     

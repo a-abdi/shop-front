@@ -19,8 +19,8 @@
                     <ShowFlide v-if="user.information.gender" :value="user.information.gender">
                         gender 
                     </ShowFlide>
-                        <ShowFlide v-if="user.information.brithday" :value="user.information.brithday">
-                        brithday 
+                        <ShowFlide v-if="user.information.birthday" :value="user.information.birthday">
+                        birthday 
                     </ShowFlide>
                         <ShowFlide v-if="user.information.address" :value="user.information.address">
                         address 

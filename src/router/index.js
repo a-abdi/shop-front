@@ -3,14 +3,16 @@ import AuthUser from "../middlewares/beforeEachAuthUser"
 import AuthAdmin from "../middlewares/beforeEachAuthAdmin"
 import UserGuest from "../middlewares/beforeEnterGuestUser"
 import AdminGuest from "../middlewares/beforeEnterGuestAdmin"
+import Dashboard from  "../views/Admin/Dashboard/Index.vue"
 
-const routeOptions = [
+const routes = [
   //*---------------------------------------------------------------------------------------
   // public route
   //*---------------------------------------------------------------------------------------
   {
     path: "/",
     name: "Home",
+    component: () => import("../views/Home.vue"),
     meta: {
       layout: "AppLayoutUser",
       requiresAuthUser: false,
@@ -21,6 +23,7 @@ const routeOptions = [
   {
     path: "/products/:productId",
     name: "Product",
+    component: () => import("../views/Product.vue"),
     meta: {
       layout: "AppLayoutUser",
       requiresAuthUser: false,
@@ -31,6 +34,7 @@ const routeOptions = [
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound', 
+    component: () => import("../views/NotFound.vue"),
     meta: {
       layout: "AppLayoutUser",
       requiresAuthUser: false,
@@ -44,6 +48,7 @@ const routeOptions = [
   {
     path: "/register",
     name: "User/Auth/Register",
+    component: () => import("../views/User/Auth/Register.vue"),
     meta: {
       layout: "AppLayoutUser",
       requiresAuthUser: false,
@@ -55,6 +60,7 @@ const routeOptions = [
   {
     path: "/login",
     name: "User/Auth/Login",
+    component: () => import("../views/User/Auth/Login.vue"),
     meta: {
       layout: "AppLayoutUser",
       requiresAuthUser: false,
@@ -66,6 +72,7 @@ const routeOptions = [
   {
     path: "/forgot-password",
     name: "User/Auth/ForgotPassword",
+    component: () => import("../views/User/Auth/ForgotPassword.vue"),
     meta: {
       layout: "AppLayoutUser",
       requiresAuthUser: false,
@@ -77,6 +84,7 @@ const routeOptions = [
   {
     path: "/reset-password/:token",
     name: "User/Auth/ResetPassword",
+    component: () => import("../views/User/Auth/ResetPassword.vue"),
     meta: {
       layout: "AppLayoutUser",
       requiresAuthUser: false,
@@ -88,6 +96,7 @@ const routeOptions = [
   {
     path: "/cart",
     name: "User/Cart",
+    component: () => import("../views/User/Cart.vue"),
     meta: {
       layout: "AppLayoutUser",
       requiresAuthUser: true,
@@ -98,6 +107,7 @@ const routeOptions = [
   {
     path: "/profile",
     name: "User/Profile",
+    component: () => import("../views/User/Profile.vue"),
     meta: {
       layout: "AppLayoutUser",
       requiresAuthUser: true,
@@ -108,6 +118,7 @@ const routeOptions = [
   {
     path: "/settings",
     name: "User/Settings",
+    component: () => import("../views/User/Settings.vue"),
     meta: {
       layout: "AppLayoutUser",
       requiresAuthUser: true,
@@ -121,6 +132,7 @@ const routeOptions = [
   {
     path: "/admin/login",
     name: "Admin/Auth/Login",
+    component: () => import("../views/Admin/Auth/Login.vue"),
     meta: {
       layout: "AppLayoutAdmin",
       requiresAuthUser: false,
@@ -132,6 +144,7 @@ const routeOptions = [
   {
     path: "/admin/reset-password/:token",
     name: "Admin/Auth/ResetPassword",
+    component: () => import("../views/Admin/Auth/ResetPassword.vue"),
     meta: {
       layout: "AppLayoutAdmin",
       requiresAuthUser: false,
@@ -143,6 +156,7 @@ const routeOptions = [
   {
     path: "/admin/forgot-password",
     name: "Admin/Auth/ForgotPassword",
+    component: () => import("../views/Admin/Auth/ForgotPassword.vue"),
     meta: {
       layout: "AppLayoutAdmin",
       requiresAuthUser: false,
@@ -154,6 +168,7 @@ const routeOptions = [
   {
     path: "/admin/dashboard",
     name: "Admin/Dashboard/Index",
+    component: Dashboard,
     meta: {
       layout: "AppLayoutAdmin",
       requiresAuthUser: false,
@@ -247,12 +262,12 @@ const routeOptions = [
 ]
 
 //*---------------------------------------------------------------------------------------
-const routes = routeOptions.map(route => {
-  return {
-    ...route,
-    component: () => import(`../views/${route.name}.vue`)
-  }
-})
+// const routes = routeOptions.map(route => {
+//   return {
+//     ...route,
+//     component: () => import(`../views/${route.name}.vue`)
+//   }
+// })
 
 const router = createRouter({
   history: createWebHistory(),

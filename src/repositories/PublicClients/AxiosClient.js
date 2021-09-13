@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseDomain = "http://a-abdi.ir:8080"
+const baseDomain = "http://api.a-abdi.ir"
 
 const baseURL = `${baseDomain}/api`
 

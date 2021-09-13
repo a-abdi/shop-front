@@ -9,7 +9,7 @@
 <script>
 import { computed } from 'vue'
 import { useStore } from 'vuex'
-import AdminLinks from './Links/AdminLinks.vue'
+import AdminLinks from '../Links/AdminLinks.vue'
 
 export default {
     name: "AppLayoutHome",
