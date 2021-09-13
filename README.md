@@ -1,7 +1,7 @@
-# Guide api use
+# Api Document
 https://documenter.getpostman.com/view/13349894/U16nJNve#2b5d7e77-b02b-4627-ad55-b7cb2c489f3a
 
-# Backend Address
+# Api Resource
 https://github.com/a-abdi/shop
 
 # Admin
@@ -17,6 +17,8 @@ https://github.com/a-abdi/shop
 - User
   - Read
   - Delete
+- Account
+  - Resset Password
 # User
   - Cart
     - Create
@@ -27,4 +29,6 @@ https://github.com/a-abdi/shop
     - Update
   - profile
     - Read
+  - Account
+    - Resset Password
     
