@@ -85,7 +85,7 @@
                         <span class="text-purple-600" v-show="!showEdit.phone"> {{ user.data.information.phone_number }} </span>
                     </div>
                     <div class="w-4/6 px-2">
-                        <input @change="updateInformation({phone_number: form.phone_number}), showEdit.phone = false" v-model="form.phone_number" v-show="showEdit.phone" id="phone" type="phone" class="form-input">
+                        <input @change="updateInformation({phone_number: form.phone_number}), showEdit.phone = false" v-model="form.phone_number" v-show="showEdit.phone" id="phone" type="phone" class="form-input" placeholder="Phone Number">
                     </div>
                     <ButtonEdit @clicked="showEdit.phone = !showEdit.phone" />
                 </div>
@@ -108,7 +108,7 @@
                         <span class="text-purple-600" v-show="!showEdit.birthday"> {{ user.data.information.birthday }} </span>
                     </div>
                     <div class="w-4/6 px-2">
-                        <input @change="updateInformation({birthday: form.birthday}), showEdit.birthday = false" v-model="form.birthday" v-show="showEdit.birthday" id="birthday" type="date" class="form-input">
+                        <input @change="updateInformation({birthday: form.birthday}), showEdit.birthday = false" v-model="form.birthday" v-show="showEdit.birthday" id="birthday" type="date" class="form-input" placeholder="Birthday">
                     </div>
                     <ButtonEdit @clicked="showEdit.birthday = !showEdit.birthday" />
                 </div>
@@ -120,7 +120,7 @@
                     <span class="text-purple-600" v-show="!showEdit.address"> {{ user.data.information.address }} </span>
                 </div>
                 <div class="w-10/12">
-                    <input @change="updateInformation({address: form.address}), showEdit.address = false" v-model="form.address" v-show="showEdit.address" id="address" type="address" class="form-input">
+                    <input @change="updateInformation({address: form.address}), showEdit.address = false" v-model="form.address" v-show="showEdit.address" id="address" type="address" class="form-input" placeholder="Address">
                 </div>
                 <ButtonEdit @clicked="showEdit.address = !showEdit.address" />
             </div>
@@ -135,6 +135,14 @@
             </div>
             <ErrorMessage class="mb-4" :error="form.errorInfo" />
         </div>
+        <Message 
+            class="absolute bottom-4 right-4"
+            :message="message" 
+            :showMessage="showMessage"
+            :typeMessage="typeMessage"
+            :fadeTime="10000"
+            @fadeMessage="showMessage = false"
+        />
     </div>
 </template>
 
@@ -145,16 +153,22 @@ import ModalDialog from '../../components/ModalDialog.vue'
 import Border from '../../components/Border.vue'
 import ButtonEdit from '../../components/ButtonEdit.vue'
 import ErrorMessage from '../../components/ErrorMessage.vue'
+import Message from '../../components/Message.vue'
+
 export default {
     components: {
         ModalDialog,
         Border,
         ButtonEdit,
         ErrorMessage,
+        Message,
     },
 
     setup () {
         const store = useStore()
+        const message = ref(null)
+        const showMessage = ref(false)
+        const typeMessage = ref(null)
         const showEdit = reactive({
             name: false,
             email: false,
@@ -189,6 +203,9 @@ export default {
         const updateInformation = async (userData) => {
             try {
                 await store.dispatch('userAuth/personalInformation', userData)
+                showMessage.value = true
+                message.value = 'Setting saved.'
+                typeMessage.value = 'success'
             }
             catch (error) {
                 form.errorInfo = error.response.data
@@ -215,6 +232,9 @@ export default {
             updateUser,
             updateInformation,
             onImageChange,
+            showMessage,
+            message,
+            typeMessage
         }
     }
 }

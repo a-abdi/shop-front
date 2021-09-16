@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="">
         <div class="flex border border-gray-200 rounded-md shadow-md">
             <div class="w-1/3">
                 <img :src="product.image_src" alt="" class="mx-auto w-auto min-w-full h-auto max-h-32 sm:max-h-40 md:max-h-60 lg:max-h-80 max-w-80">
@@ -35,6 +35,10 @@
                 {{ product.description }}
             </p>
         </div>
+        <Message class="absolute bottom-4 right-4 bg-gray-300" 
+        :message="message"
+        :showMessage="showMessage"
+        @fadeMessage="showMessage = false" />
     </div>
 </template>
  
@@ -43,16 +47,20 @@
     import { useStore } from 'vuex'
     import { computed, ref } from 'vue'
     import TotalPrice from './TotalPrice.vue'
+    import Message from './Message.vue'
 
     export default {
         components: {
-            TotalPrice
+            TotalPrice,
+            Message,
         },
 
         async setup () {
             const store = useStore()
             const route = useRoute()
             const router = useRouter()
+            const message = ref(null)
+            const showMessage = ref(false)
             const productId = route.params.productId
 
             try {
@@ -72,12 +80,15 @@
             }
 
             const addToCart = async () => {
+                // newM.value = false
                 try {
                     const user = computed (() => store.getters['userAuth/user'])
                     if(!user.value) {
                         router.push({ name: 'User/Auth/Login',  params: { }} )
                     }
                     else {
+                        showMessage.value = true
+                        message.value = 'Add product to cart.'
                         await store.dispatch('userCart/addToCart', { productId })
                     }
                 } catch (e) {
@@ -88,6 +99,8 @@
             return {
                 product: computed ( () => store.state.product.data ),
                 addToCart,
+                message,
+                showMessage,
             }
         }
     }
