@@ -105,6 +105,28 @@ const routes = [
   },
 
   {
+    path: "/order/error",
+    name: "User/Order/Error",
+    component: () => import("../views/User/Order/Error.vue"),
+    meta: {
+      layout: "AppLayoutUser",
+      requiresAuthUser: true,
+      requiresAuthAdmin: false,
+    }
+  },
+
+  {
+    path: "/order/success",
+    name: "User/Order/Success",
+    component: () => import("../views/User/Order/Success.vue"),
+    meta: {
+      layout: "AppLayoutUser",
+      requiresAuthUser: true,
+      requiresAuthAdmin: false,
+    }
+  },
+
+  {
     path: "/profile",
     name: "User/Profile",
     component: () => import("../views/User/Profile.vue"),

@@ -41,7 +41,7 @@ export default {
     },
 
     setup(props) {
-        const success = ref(false)
+        const success = ref(true)
         const danger  = ref(false)
         const warning = ref(false)
         const newMessage = ref(false)
@@ -49,7 +49,6 @@ export default {
         watch( 
             () => props.typeMessage,
             type => {
-                console.log(type)
                 if(type == 'success') {
                     success.value = true
                     danger.value = false

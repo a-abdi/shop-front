@@ -1,15 +1,15 @@
 <template>
     <div class="flex my-4">
-        <div class="w-3/4" v-if="cart">
-            <div v-for="product in cart.data" :key="product.id" class="flex mb-2 md:mb-4 ml-1 md:ml-2 text-xs md:text-sm">
+        <div class="w-3/4" v-if="carts">
+            <div v-for="cart in carts.data" :key="cart.id" class="flex mb-2 md:mb-4 ml-1 md:ml-2 text-xs md:text-sm">
                 <div class="w-1/3">
-                    <img :src="product.image_src" alt="" class="w-auto h-auto min-w-full max-w-40 max-h-24 sm:max-h-32 md:max-h-40 lg:max-h-48 xl:max-h-56 max-w-full">
+                    <img :src="cart.product.image_src" alt="" class="w-auto h-auto min-w-full max-w-40 max-h-24 sm:max-h-32 md:max-h-40 lg:max-h-48 xl:max-h-56 max-w-full">
                 </div>
                 <div class="w-2/3 px-8 py-2">
                     <div class="text-purple-600 text-sm md:text-base mb-1 md:mb-2">
-                        {{ product.name}}
+                        {{ cart.name}}
                     </div>
-                    <TotalPrice :price="product.price" :discount="product.discount"  class=""/>
+                    <TotalPrice :price="cart.price" :discount="cart.discount"  class=""/>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@ export default {
         const store = useStore()
 
         return {
-            cart: computed(() => store.getters['userCart/cart']),
+            carts: computed(() => store.getters['userCart/cart']),
         }
     }
 }
