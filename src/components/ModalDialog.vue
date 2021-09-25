@@ -31,7 +31,7 @@
 
 <script>
 import { ref, watch } from 'vue'
-import IconClose from "/@vite-icons/mdi/close.vue"
+import IconClose from '~icons/mdi/close.vue'
 import ErrorMessage from './ErrorMessage.vue'
 
 export default {

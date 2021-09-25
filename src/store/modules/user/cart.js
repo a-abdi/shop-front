@@ -24,12 +24,26 @@ export default {
             const cart = await CartRepository.create(productId)
             commit('setCartData', cart.data)
         },
+
+        async updateCart ({ commit }, cartData) {
+            const cart = await CartRepository.update({ quantity: cartData.quantity }, cartData.id)
+            commit('setCartData', cart.data)
+        },
+
+        async deleteCart ({ commit }, cartId) {
+           const cart = await CartRepository.delete(cartId)
+           commit('setCartData', cart.data)
+        }
     },
 
     getters: {  
         cartCount(state) {
             if(state.cart) {
-              return state.cart.data.length
+                let countCart = 0
+                state.cart.data.forEach(cart => {
+                    countCart += cart.quantity
+                });
+                return countCart
     
             } else {
               return null
