@@ -8,25 +8,29 @@
                 <div class="text-center font-medium text-purple-600 text-sm md:text-base">
                     {{ product.name }}
                 </div>
-
                 <div class="">
                     <TotalPrice :price="product.price" :discount="product.discount" />
                 </div>
-
                 <div class="">
                     <div class="flex">
                         <label for="quantity" class="text-gray-600 pr-2">
                             quantity:
                         </label>
-                        <p id="quantity" class="text-red-600">
+                        <div id="quantity" class="text-red-600">
                             {{ product.quantity }}
-                        </p>
+                        </div>
                     </div>
                 </div>
                 <div class="flex flex-row-reverse mb-2">
-                    <button @click="addToCart" class="btn-red">
+                    <button v-if="!cartData.exist" @click="addToCart" class="btn-red">
                         Add To Cart
                     </button>
+                    <CartTools
+                        v-if="cartData.exist"
+                        :cart="cartData.data"
+                        @updateCart="updateCart($event)"
+                        @deleteCart="deleteCart($event)"
+                    />
                 </div>
             </div>
         </div>
@@ -36,16 +40,17 @@
             </p>
         </div>
         <Message class="absolute bottom-4 right-4 bg-gray-300" 
-        :message="message"
-        :showMessage="showMessage"
-        @fadeMessage="showMessage = false" />
+            :message="message"
+            :showMessage="showMessage"
+            @fadeMessage="showMessage = false" 
+        />
     </div>
 </template>
  
 <script>
     import { useRoute, useRouter } from 'vue-router'
     import { useStore } from 'vuex'
-    import { computed, ref } from 'vue'
+    import { computed, ref, watch } from 'vue'
     import TotalPrice from './TotalPrice.vue'
     import Message from './Message.vue'
 
@@ -62,6 +67,8 @@
             const message = ref(null)
             const showMessage = ref(false)
             const productId = route.params.productId
+            const carts = computed(() => store.getters['userCart/cart'])
+            const cartData = ref(getCart(carts.value.data, productId))
 
             try {
                await store.dispatch('getProduct', { productId })
@@ -80,28 +87,62 @@
             }
 
             const addToCart = async () => {
-                // newM.value = false
-                try {
-                    const user = computed (() => store.getters['userAuth/user'])
-                    if(!user.value) {
-                        router.push({ name: 'User/Auth/Login',  params: { }} )
-                    }
-                    else {
-                        showMessage.value = true
-                        message.value = 'Add product to cart.'
-                        await store.dispatch('userCart/addToCart', { productId })
-                    }
-                } catch (e) {
-                    
+                const user = computed (() => store.getters['userAuth/user'])
+                if(!user.value) {
+                    router.push({ name: 'User/Auth/Login',  params: { }} )
+                }
+                else {
+                    await store.dispatch('userCart/addToCart', { productId })
+                    showMessage.value = true
+                    message.value = 'Add product to cart.'
                 }
             }
+
+            const updateCart = async (cart) => {
+                await store.dispatch('userCart/updateCart', cart)
+                message.value = 'updated cart.'
+                showMessage.value = true
+            }
+
+            const deleteCart = async cartId => {
+                await store.dispatch('userCart/deleteCart', cartId)
+                message.value = 'deleted cart.'
+                showMessage.value = true
+            }
+
+            watch ( 
+                () => carts.value.data,
+                carts => {
+                    cartData.value = getCart(carts, productId) 
+                }
+            )
 
             return {
                 product: computed ( () => store.state.product.data ),
                 addToCart,
                 message,
                 showMessage,
+                cartData,
+                updateCart,
+                deleteCart
             }
         }
+    }
+
+    function getCart(carts, productId)
+    {
+        let cartData = {
+            exist: false,
+            data: null,
+        }
+
+        carts.forEach(cart => {
+            if (cart.product_id == productId) {
+                cartData.exist = true
+                cartData.data = cart
+            }
+        });
+
+        return cartData
     }
 </script>

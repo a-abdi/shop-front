@@ -27,7 +27,7 @@ export default {
     emits: ['fadeOff'],
 
     setup(props, { emit }) {
-        const opacity = ref(1)
+        const opacity = ref(0)
         const timeOut = ref(0)
         const opacityID = ref([])
 
