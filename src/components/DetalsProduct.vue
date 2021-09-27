@@ -48,101 +48,101 @@
 </template>
  
 <script>
-    import { useRoute, useRouter } from 'vue-router'
-    import { useStore } from 'vuex'
-    import { computed, ref, watch } from 'vue'
-    import TotalPrice from './TotalPrice.vue'
-    import Message from './Message.vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+import { computed, ref, watch } from 'vue'
+import TotalPrice from './TotalPrice.vue'
+import Message from './Message.vue'
 
-    export default {
-        components: {
-            TotalPrice,
-            Message,
-        },
+export default {
+    components: {
+        TotalPrice,
+        Message,
+    },
 
-        async setup () {
-            const store = useStore()
-            const route = useRoute()
-            const router = useRouter()
-            const message = ref(null)
-            const showMessage = ref(false)
-            const productId = route.params.productId
-            const carts = computed(() => store.getters['userCart/cart'])
-            const cartData = ref(getCart(carts.value.data, productId))
+    async setup () {
+        const store = useStore()
+        const route = useRoute()
+        const router = useRouter()
+        const message = ref(null)
+        const showMessage = ref(false)
+        const productId = route.params.productId
+        const carts = computed(() => store.getters['userCart/cart'])
+        const cartData = ref(getCart(carts.value.data, productId))
 
-            try {
-               await store.dispatch('getProduct', { productId })
+        try {
+            await store.dispatch('getProduct', { productId })
 
-            } catch (e) {
-                router.push({
-                    name: 'NotFound',
+        } catch (e) {
+            router.push({
+                name: 'NotFound',
 
-                    // preserve current path and remove the first char to avoid the target URL starting with `//`
-                    params: { },
+                // preserve current path and remove the first char to avoid the target URL starting with `//`
+                params: { },
 
-                    // preserve existing query and hash if any
-                    query: '',
-                    hash: '',
-                })
-            }
-
-            const addToCart = async () => {
-                const user = computed (() => store.getters['userAuth/user'])
-                if(!user.value) {
-                    router.push({ name: 'User/Auth/Login',  params: { }} )
-                }
-                else {
-                    await store.dispatch('userCart/addToCart', { productId })
-                    showMessage.value = true
-                    message.value = 'Add product to cart.'
-                }
-            }
-
-            const updateCart = async (cart) => {
-                await store.dispatch('userCart/updateCart', cart)
-                message.value = 'updated cart.'
-                showMessage.value = true
-            }
-
-            const deleteCart = async cartId => {
-                await store.dispatch('userCart/deleteCart', cartId)
-                message.value = 'deleted cart.'
-                showMessage.value = true
-            }
-
-            watch ( 
-                () => carts.value.data,
-                carts => {
-                    cartData.value = getCart(carts, productId) 
-                }
-            )
-
-            return {
-                product: computed ( () => store.state.product.data ),
-                addToCart,
-                message,
-                showMessage,
-                cartData,
-                updateCart,
-                deleteCart
-            }
-        }
-    }
-
-    function getCart(carts, productId)
-    {
-        let cartData = {
-            exist: false,
-            data: null,
+                // preserve existing query and hash if any
+                query: '',
+                hash: '',
+            })
         }
 
-        carts.forEach(cart => {
-            if (cart.product_id == productId) {
-                cartData.exist = true
-                cartData.data = cart
+        const addToCart = async () => {
+            const user = computed (() => store.getters['userAuth/user'])
+            if(!user.value) {
+                router.push({ name: 'User/Auth/Login',  params: { }} )
             }
-        });
+            else {
+                await store.dispatch('userCart/addToCart', { productId })
+                showMessage.value = true
+                message.value = 'Add product to cart.'
+            }
+        }
 
-        return cartData
+        const updateCart = async (cart) => {
+            await store.dispatch('userCart/updateCart', cart)
+            message.value = 'updated cart.'
+            showMessage.value = true
+        }
+
+        const deleteCart = async cartId => {
+            await store.dispatch('userCart/deleteCart', cartId)
+            message.value = 'deleted cart.'
+            showMessage.value = true
+        }
+
+        watch ( 
+            () => carts.value.data,
+            carts => {
+                cartData.value = getCart(carts, productId) 
+            }
+        )
+
+        return {
+            product: computed ( () => store.state.product.data ),
+            addToCart,
+            message,
+            showMessage,
+            cartData,
+            updateCart,
+            deleteCart
+        }
     }
+}
+
+function getCart(carts, productId)
+{
+    let cartData = {
+        exist: false,
+        data: null,
+    }
+
+    carts.forEach(cart => {
+        if (cart.product_id == productId) {
+            cartData.exist = true
+            cartData.data = cart
+        }
+    });
+
+    return cartData
+}
 </script>

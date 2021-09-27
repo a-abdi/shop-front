@@ -15,6 +15,10 @@ export default {
         async createPayment ({ commit }) {
            return await PaymentRepository.payment()
         },
+
+        async getLatestError ({ commit }) {
+            return await PaymentRepository.getLatestMessage()
+        },
     },
 
     getters: {  

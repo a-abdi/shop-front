@@ -7,5 +7,7 @@ export default {
         return Client.post(`${resource}`);
     },
 
-    // MANY OTHER ENDPOINT RELATED STUFFS
+    getLatestMessage () {
+        return Client.get(`${resource}/message-latest`)
+    }
 }

@@ -33,11 +33,10 @@
 </template>
 
 <script>
-import { computed, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
-
     setup () {
         const store = useStore()
         const sumPrice = ref(0)
@@ -57,7 +56,9 @@ export default {
                 checkOut(carts)
             }
         )
-
+         
+        onMounted(carts, checkOut(carts.value.data))
+        
         return {
             sumPrice,
             sumDiscount,
