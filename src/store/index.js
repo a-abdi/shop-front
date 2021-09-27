@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import ProductRepository from '../repositories/ProductRepository'
 import UserCartModule from "./modules/user/cart"
 import UserAuthModule from "./modules/user/auth"
+import UserPaymentModule from "./modules/user/payment"
 import AdminProductsModule from "./modules/admin/products"
 import AdminAuthModule from "./modules/admin/auth"
 import AdminCategoriesModule from "./modules/admin/categories"
@@ -15,6 +16,7 @@ export default createStore({
       adminUsers: AdminUsersModule,
       userCart: UserCartModule,
       userAuth: UserAuthModule,
+      userPayment: UserPaymentModule,
     },
 
     state () {

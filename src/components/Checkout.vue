@@ -25,7 +25,7 @@
             </span>
         </div>
         <div class="border-t border-gray-200 p-1 md:p-2 2xl:p-4">
-            <button class="btn-red">
+            <button @click="$emit('payment')" class="btn-red">
                 Payment
             </button>
         </div>
@@ -33,31 +33,35 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useStore } from 'vuex'
-import Currency from './Currency.vue'
 
 export default {
-    components: {
-        Currency
-    },
 
     setup () {
         const store = useStore()
         const sumPrice = ref(0)
         const sumDiscount = ref(0)
-        const cart = store.getters['userCart/cart']
+        const carts = computed( () => store.getters['userCart/cart']) 
 
-        for (let index = 0; index < cart.data.length; index++) {
-            sumPrice.value += cart.data[index].price
-            sumDiscount.value += cart.data[index].discount
+        const checkOut = (carts) => {
+            carts.forEach(cart => {
+                sumPrice.value += cart.price * cart.quantity
+                sumDiscount.value += cart.discount * cart.quantity
+            });
         }
+
+        watch( 
+            () => carts.value.data,
+            carts => {
+                checkOut(carts)
+            }
+        )
 
         return {
             sumPrice,
             sumDiscount,
         }
-
     }
 }
 </script>

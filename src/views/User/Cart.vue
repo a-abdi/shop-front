@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="w-1/4">
-            <Checkout class="mx-0.5 sm:mx-1 md:mx-2 lg:mx-3 xl:mx-4 2xl:mx-6" />
+            <Checkout @payment="payment" class="mx-0.5 sm:mx-1 md:mx-2 lg:mx-3 xl:mx-4 2xl:mx-6" />
         </div>
         <Message class="absolute bottom-4 right-4" 
             :message="'updated cart'"
@@ -50,11 +50,17 @@ export default {
             showMessage.value = true
         }
 
+        const payment = async () => {
+           const paymentLink = await store.dispatch('userPayment/createPayment')
+           window.location.replace(paymentLink.data);
+        }
+
         return {
             carts,
             updateCart,
             deleteCart,
             showMessage,
+            payment,
         }
     }
 }
